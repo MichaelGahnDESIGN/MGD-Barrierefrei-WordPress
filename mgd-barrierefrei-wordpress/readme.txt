@@ -10,6 +10,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Local reading preferences and editable draft accessibility statements.
 
+== Description ==
+
+Local reading preferences and editable draft accessibility statements.
+
 Features:
 
 * Offer contrast, grayscale, focus, text size, readable text, link emphasis and reduced-motion preferences.
@@ -17,10 +21,6 @@ Features:
 * Configure the panel label, position and accent color.
 * Collect organization, responsible person, contact information, known barriers and statement date.
 * Create a page draft for review; the plugin does not automatically publish a compliance claim.
-
-== Description ==
-
-Local reading preferences and editable draft accessibility statements.
 
 This edition uses native WordPress.org updates. There is no GitHub self-updater or external plugin installer. Updates become available after approval and publication in the directory.
 
