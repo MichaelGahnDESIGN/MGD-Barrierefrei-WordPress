@@ -1,0 +1,2 @@
+FILE: includes/class-mgd-barrierefrei-settings.php
+[{"line":87,"column":27,"type":"WARNING","code":"WordPress.Security.ValidatedSanitizedInput.InputNotSanitized","message":"Detected usage of a non-sanitized input variable: $_POST[&#039;mgd_barrierefrei&#039;]","docs":""}]

@@ -5,3 +5,6 @@
 *.log
 *.zip
 *.sha256
+
+/build/wordpress-org/
+/artifacts/wordpress-org/

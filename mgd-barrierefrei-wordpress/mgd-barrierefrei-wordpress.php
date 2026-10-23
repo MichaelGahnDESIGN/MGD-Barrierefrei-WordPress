@@ -4,7 +4,6 @@
  * Plugin URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Description: Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit.
  * Version: 1.0.1
- * Update URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Requires at least: 6.5
  * Requires PHP: 8.1
  * Author: Michael Gahn DESIGN
@@ -26,8 +25,6 @@ define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));
 
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-settings.php';
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-statement.php';
-require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-catalog.php';
-require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-updater.php';
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-renderer.php';
 
 add_action('plugins_loaded', static function (): void {
@@ -36,8 +33,6 @@ add_action('plugins_loaded', static function (): void {
 
     $settings->register($statement);
     (new MGD_Barrierefrei_Renderer($settings))->register();
-    (new MGD_Barrierefrei_Catalog())->register();
-    (new MGD_Barrierefrei_Updater())->register();
 });
 
 register_activation_hook(__FILE__, static function (): void {
@@ -47,10 +42,10 @@ register_activation_hook(__FILE__, static function (): void {
 });
 
 require_once __DIR__ . '/includes/class-mgd-plugin-admin-tools.php';
-\MGD_Plugin_Admin_Tools_20261023::register([
+\MGD_WordPress_Org_Admin_Tools::register([
     'file' => __FILE__,
     'repo' => 'MGD-Barrierefrei-WordPress',
-    'slug' => 'mgd-barrierefrei-wordpress',
+    'slug' => 'mgd-barrierefrei',
     'name' => 'MGD Barrierefrei',
     'description' => 'Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit.',
     'version' => '1.0.1',

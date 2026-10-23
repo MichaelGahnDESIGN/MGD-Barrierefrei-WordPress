@@ -22,6 +22,7 @@ final class MGD_Barrierefrei_Settings
             'accent_color' => '#c8171f',
             'panel_title' => 'Einstellungen für bessere Lesbarkeit',
             'statement_page_id' => 0,
+            'show_credit' => false,
             'organisation' => get_bloginfo('name'),
             'website_url' => home_url('/'),
             'responsible_name' => '',
@@ -91,6 +92,7 @@ final class MGD_Barrierefrei_Settings
 
         $next = [
             'enabled' => !empty($raw['enabled']),
+            'show_credit' => !empty($raw['show_credit']),
             'button_label' => sanitize_text_field((string) ($raw['button_label'] ?? $current['button_label'])),
             'position' => in_array(($raw['position'] ?? ''), ['left', 'right'], true) ? $raw['position'] : 'left',
             'accent_color' => $colors ?: '#c8171f',
@@ -128,17 +130,17 @@ final class MGD_Barrierefrei_Settings
             <input type="hidden" name="mgd_barrierefrei_save" value="1">
             <section class="mgd-a11y-card mgd-a11y-card--switch">
               <div><h2>Bedienhilfe im Shop</h2><p>Zeigt einen gut erreichbaren Schalter und ein Modal mit lokalen Darstellungsoptionen.</p></div>
-              <label class="mgd-a11y-switch"><input type="checkbox" name="mgd_barrierefrei[enabled]" value="1" <?= checked((bool) $s['enabled'], true, false) ?>><span aria-hidden="true"></span><b>Aktiv</b></label>
+              <label class="mgd-a11y-switch"><input type="checkbox" name="mgd_barrierefrei[enabled]" value="1" <?php echo checked((bool) $s['enabled'], true, false) ?>><span aria-hidden="true"></span><b>Aktiv</b></label>
             </section>
             <div class="mgd-a11y-layout">
-              <section class="mgd-a11y-card"><h2>Darstellung</h2>
+              <section class="mgd-a11y-card"><h2>Darstellung</h2><p><label><input type="checkbox" name="mgd_barrierefrei[show_credit]" value="1" <?php checked(!empty($s['show_credit'])); ?>> Freiwilligen Herstellerlink im Modal anzeigen (Michael-Gahn.de, neuer Tab)</label></p>
                 <p class="description">Alle Werte wirken erst nach dem Speichern auf der Website.</p>
                 <?php $this->text('button_label', 'Beschriftung des Schalters', $s['button_label']); ?>
                 <?php $this->text('panel_title', 'Titel im Modal', $s['panel_title']); ?>
-                <p><label for="mgd-a11y-position">Position</label><select id="mgd-a11y-position" name="mgd_barrierefrei[position]"><option value="left" <?= selected($s['position'], 'left', false) ?>>Unten links</option><option value="right" <?= selected($s['position'], 'right', false) ?>>Unten rechts</option></select></p>
-                <p><label for="mgd-a11y-color">Akzentfarbe</label><input id="mgd-a11y-color" type="color" name="mgd_barrierefrei[accent_color]" value="<?= esc_attr($s['accent_color']) ?>"></p>
+                <p><label for="mgd-a11y-position">Position</label><select id="mgd-a11y-position" name="mgd_barrierefrei[position]"><option value="left" <?php echo selected($s['position'], 'left', false) ?>>Unten links</option><option value="right" <?php echo selected($s['position'], 'right', false) ?>>Unten rechts</option></select></p>
+                <p><label for="mgd-a11y-color">Akzentfarbe</label><input id="mgd-a11y-color" type="color" name="mgd_barrierefrei[accent_color]" value="<?php echo esc_attr($s['accent_color']) ?>"></p>
               </section>
-              <aside class="mgd-a11y-preview" aria-label="Vorschau der Bedienhilfe"><span class="mgd-a11y-preview__label">Vorschau</span><div class="mgd-a11y-preview__page"><strong><?= esc_html(get_bloginfo('name')) ?></strong><span>Deine Inhalte bleiben im Mittelpunkt.</span><button type="button" style="--mgd-accent: <?= esc_attr($s['accent_color']) ?>"><span aria-hidden="true">♿</span><?= esc_html($s['button_label']) ?></button></div></aside>
+              <aside class="mgd-a11y-preview" aria-label="Vorschau der Bedienhilfe"><span class="mgd-a11y-preview__label">Vorschau</span><div class="mgd-a11y-preview__page"><strong><?php echo esc_html(get_bloginfo('name')) ?></strong><span>Deine Inhalte bleiben im Mittelpunkt.</span><button type="button" style="--mgd-accent: <?php echo esc_attr($s['accent_color']) ?>"><span aria-hidden="true">♿</span><?php echo esc_html($s['button_label']) ?></button></div></aside>
             </div>
             <section class="mgd-a11y-card"><h2>Erklärung zur Barrierefreiheit</h2><p>Der Generator erstellt einen bearbeitbaren Entwurf. Prüfe ihn vor der Veröffentlichung rechtlich und fachlich für dein Angebot.</p>
               <div class="mgd-a11y-fields">
@@ -148,23 +150,22 @@ final class MGD_Barrierefrei_Settings
                 <?php $this->text('responsible_role', 'Rolle oder Abteilung', $s['responsible_role']); ?>
                 <?php $this->email('contact_email', 'E-Mail für Feedback', $s['contact_email']); ?>
                 <?php $this->text('contact_phone', 'Telefon für Feedback', $s['contact_phone']); ?>
-                <p><label for="mgd-a11y-status">Einschätzung des Stands</label><select id="mgd-a11y-status" name="mgd_barrierefrei[statement_status]"><option value="vollstaendig" <?= selected($s['statement_status'], 'vollstaendig', false) ?>>Vollständig barrierefrei</option><option value="teilweise" <?= selected($s['statement_status'], 'teilweise', false) ?>>Teilweise barrierefrei</option><option value="nicht" <?= selected($s['statement_status'], 'nicht', false) ?>>Noch nicht vollständig barrierefrei</option></select></p>
-                <p><label for="mgd-a11y-date">Stand der Erklärung</label><input id="mgd-a11y-date" type="date" name="mgd_barrierefrei[statement_date]" value="<?= esc_attr($s['statement_date']) ?>"></p>
+                <p><label for="mgd-a11y-status">Einschätzung des Stands</label><select id="mgd-a11y-status" name="mgd_barrierefrei[statement_status]"><option value="vollstaendig" <?php echo selected($s['statement_status'], 'vollstaendig', false) ?>>Vollständig barrierefrei</option><option value="teilweise" <?php echo selected($s['statement_status'], 'teilweise', false) ?>>Teilweise barrierefrei</option><option value="nicht" <?php echo selected($s['statement_status'], 'nicht', false) ?>>Noch nicht vollständig barrierefrei</option></select></p>
+                <p><label for="mgd-a11y-date">Stand der Erklärung</label><input id="mgd-a11y-date" type="date" name="mgd_barrierefrei[statement_date]" value="<?php echo esc_attr($s['statement_date']) ?>"></p>
               </div>
-              <p><label for="mgd-a11y-barriers">Bekannte Barrieren oder geplante Verbesserungen</label><textarea id="mgd-a11y-barriers" name="mgd_barrierefrei[known_barriers]" rows="5" placeholder="Zum Beispiel: Einzelne ältere PDF-Dateien werden schrittweise überarbeitet."><?= esc_textarea($s['known_barriers']) ?></textarea></p>
+              <p><label for="mgd-a11y-barriers">Bekannte Barrieren oder geplante Verbesserungen</label><textarea id="mgd-a11y-barriers" name="mgd_barrierefrei[known_barriers]" rows="5" placeholder="Zum Beispiel: Einzelne ältere PDF-Dateien werden schrittweise überarbeitet."><?php echo esc_textarea($s['known_barriers']) ?></textarea></p>
               <p><label for="mgd-a11y-page">Vorhandene Seite für den Entwurf</label><?php wp_dropdown_pages(['name' => 'mgd_barrierefrei[statement_page_id]', 'id' => 'mgd-a11y-page', 'show_option_none' => 'Neue Seite beim Erstellen anlegen', 'option_none_value' => '0', 'selected' => (int) $s['statement_page_id']]); ?></p>
             </section>
             <p class="submit"><button class="button button-primary button-hero" type="submit">Einstellungen speichern</button></p>
           </form>
-          <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
+          <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
-          <?php (new MGD_Barrierefrei_Catalog())->render(); ?>
         </div>
         <?php
     }
 
-    private function text(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?= esc_attr($key) ?>"><?= esc_html($label) ?></label><input id="mgd-a11y-<?= esc_attr($key) ?>" class="regular-text" type="text" name="mgd_barrierefrei[<?= esc_attr($key) ?>]" value="<?= esc_attr($value) ?>"></p><?php }
-    private function email(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?= esc_attr($key) ?>"><?= esc_html($label) ?></label><input id="mgd-a11y-<?= esc_attr($key) ?>" type="email" name="mgd_barrierefrei[<?= esc_attr($key) ?>]" value="<?= esc_attr($value) ?>"></p><?php }
-    private function url(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?= esc_attr($key) ?>"><?= esc_html($label) ?></label><input id="mgd-a11y-<?= esc_attr($key) ?>" type="url" name="mgd_barrierefrei[<?= esc_attr($key) ?>]" value="<?= esc_attr($value) ?>"></p><?php }
+    private function text(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?php echo esc_attr($key) ?>"><?php echo esc_html($label) ?></label><input id="mgd-a11y-<?php echo esc_attr($key) ?>" class="regular-text" type="text" name="mgd_barrierefrei[<?php echo esc_attr($key) ?>]" value="<?php echo esc_attr($value) ?>"></p><?php }
+    private function email(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?php echo esc_attr($key) ?>"><?php echo esc_html($label) ?></label><input id="mgd-a11y-<?php echo esc_attr($key) ?>" type="email" name="mgd_barrierefrei[<?php echo esc_attr($key) ?>]" value="<?php echo esc_attr($value) ?>"></p><?php }
+    private function url(string $key, string $label, string $value): void { ?><p><label for="mgd-a11y-<?php echo esc_attr($key) ?>"><?php echo esc_html($label) ?></label><input id="mgd-a11y-<?php echo esc_attr($key) ?>" type="url" name="mgd_barrierefrei[<?php echo esc_attr($key) ?>]" value="<?php echo esc_attr($value) ?>"></p><?php }
 }
