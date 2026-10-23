@@ -53,3 +53,7 @@ Der Befehl erzeugt `release/mgd-barrierefrei-wordpress.zip`, eine SHA-256-Datei 
 ## Lizenz
 
 GPL-2.0-or-later. © Michael Gahn DESIGN.
+
+## 1.0.1 – Plugin-Verwaltung
+
+Separate Update-Prüfung, Plugin-Links und ergänzte lokale Details. [Anleitung](docs/WORDPRESS-VERWALTUNG.md).
