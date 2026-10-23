@@ -23,7 +23,7 @@ final class MGD_Barrierefrei_Renderer
             return;
         }
         wp_enqueue_style('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/css/frontend.css', [], MGD_BARRIEREFREI_VERSION);
-        wp_enqueue_script('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/js/frontend.js', [], MGD_BARRIEREFREI_VERSION, true);
+        wp_enqueue_script('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/js/frontend.js', [], MGD_BARRIEREFREI_VERSION, ['in_footer' => true, 'strategy' => 'defer']);
     }
 
     public function markup(): void

@@ -84,7 +84,7 @@ final class MGD_Barrierefrei_Settings
         }
         check_admin_referer('mgd_barrierefrei_save');
 
-        $raw = wp_unslash($_POST['mgd_barrierefrei'] ?? []);
+        $raw = isset($_POST['mgd_barrierefrei']) && is_array($_POST['mgd_barrierefrei']) ? map_deep(wp_unslash($_POST['mgd_barrierefrei']), 'sanitize_textarea_field') : [];
         $raw = is_array($raw) ? $raw : [];
         $current = $this->all();
         $colors = sanitize_hex_color((string) ($raw['accent_color'] ?? ''));

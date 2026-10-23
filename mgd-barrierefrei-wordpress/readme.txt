@@ -42,6 +42,10 @@ WordPress checks the official directory. This edition has no configurable update
 = Does it send analytics? =
 No analytics or telemetry service is included. WordPress communicates with WordPress.org for native updates. Support links open only when clicked.
 
+== Screenshots ==
+
+1. Reading preference panel configuration and accessibility-statement fields.
+
 == Changelog ==
 
 = 1.0.1 =

@@ -1,26 +1,17 @@
-# Plugin Check – lokaler CLI-Lauf
+# Plugin Check – aktualisierter lokaler Lauf
 
-Stand: 23.10.2026. WordPress 7.1.3 / PHP 8.3 / Plugin Check 2.1.0.
+Stand: 23.10.2026. Kandidat 1.0.1; WordPress 7.1.3, PHP 8.3, offizieller Plugin Check 2.1.0 mit Runtime-Bootstrap.
 
-Aufruf mit Runtime-Bootstrap:
+**0 Fehler, 0 Warnungen.** Alle Prüfgruppen aktiv, keine Fehlercodes ausgeschlossen. Vollständiger Bericht: `plugin-check.txt`.
 
-```sh
-wp --require=wp-content/plugins/plugin-check/cli.php plugin check mgd-barrierefrei --slug=mgd-barrierefrei --format=json
-```
 
-Lokaler CLI-Lauf: **0 Fehler, 1 Warnungen**, Exit-Code 0. Die vollständigen unveränderten Meldungen stehen in `plugin-check.txt`. Keine Checks, Warnungsgruppen oder Fehlercodes wurden für den Lauf ausgeschlossen.
 
-## Warnungsgruppen
+Die CI läuft zusätzlich mit einer eigenen wp-env-Installation und kann andere Laufzeit-/Performance-Hinweise liefern. Die Gesamtübergabe bewahrt beide Rohberichte getrennt auf. Ein grüner Lauf ist keine WordPress.org-Zulassung.
 
-- `WordPress.Security.ValidatedSanitizedInput.InputNotSanitized`: 1
+## Prüfung der Resthinweise
 
-Die GitHub Action prüft das gebaute Paket zusätzlich in einer eigenen wp-env-Installation. Sie kann weitere Laufzeit- und Performance-Hinweise ausgeben. Die lokalen Zahlen sind deshalb nicht als Gesamtzahl sämtlicher CI-Annotationen zu lesen. Die endgültigen CI-Rohberichte stehen als Artefakte des Workflows zur Verfügung und werden in der zentralen Paketübergabe mitgeliefert.
+Im lokalen Lauf wurden keine Hinweise gefunden. Weitere Theme-, Hosting- und Hilfstechnologie-Kombinationen sind dadurch nicht vollständig geprüft.
 
-## Zusätzliche Belege
+## Weitere Belege
 
-- Alle sieben Kandidaten gemeinsam aktiviert, Frontend HTTP 200.
-- Acht Integrationstests: Herstellerlink aus/Opt-in, Textgrenzen, Entwurf, Menü, Formular-Nonce und Pflichtzustimmung.
-- Nativer Updatekanal und vier Grafikgrößen mit eigenem Paketvertrag geprüft.
-- Kein Live-Deployment, keine WordPress.org-Einreichung.
-
-Die Warnungen sind Hinweise für die manuelle Prüfung und kein automatisches Freigabezertifikat. Einordnung und Wechselhinweise stehen in `../WORDPRESS-ORG.md`.
+Sieben Backends tatsächlich im Browser geöffnet, keine JavaScript-Ausnahmen; echte Screenshots mit künstlichen Daten. 22 lokale Integrationstests zu Formularschutz, Herstellerlink, Entwurf, Menü und privaten/öffentlichen Daten. PHP-Syntax und Verzeichnis-Paketvertrag geprüft. Kein Produktivsystem verändert und keine Einreichung ausgelöst.
