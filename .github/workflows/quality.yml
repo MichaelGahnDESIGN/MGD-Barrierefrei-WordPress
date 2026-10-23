@@ -27,7 +27,7 @@ jobs:
       - name: Release-Paket
         run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
       - name: Geheimnisse prüfen
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ github.token }}
           GITLEAKS_ENABLE_COMMENTS: 'false'
