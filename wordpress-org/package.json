@@ -1,0 +1,7 @@
+{
+  "slug": "mgd-barrierefrei",
+  "source": "mgd-barrierefrei-wordpress",
+  "include": [
+    "."
+  ]
+}

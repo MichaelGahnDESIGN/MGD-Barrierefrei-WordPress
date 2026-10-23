@@ -23,7 +23,7 @@ final class MGD_Barrierefrei_Renderer
             return;
         }
         wp_enqueue_style('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/css/frontend.css', [], MGD_BARRIEREFREI_VERSION);
-        wp_enqueue_script('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/js/frontend.js', [], MGD_BARRIEREFREI_VERSION, true);
+        wp_enqueue_script('mgd-barrierefrei', MGD_BARRIEREFREI_URL . 'assets/js/frontend.js', [], MGD_BARRIEREFREI_VERSION, ['in_footer' => true, 'strategy' => 'defer']);
     }
 
     public function markup(): void
@@ -34,11 +34,11 @@ final class MGD_Barrierefrei_Renderer
         }
         $id = 'mgd-a11y-panel';
         ?>
-        <div class="mgd-a11y mgd-a11y--<?= esc_attr($s['position']) ?>" style="--mgd-a11y-accent: <?= esc_attr($s['accent_color']) ?>">
-          <button class="mgd-a11y__trigger" type="button" aria-expanded="false" aria-controls="<?= esc_attr($id) ?>"><span aria-hidden="true">♿</span><span><?= esc_html($s['button_label']) ?></span></button>
+        <div class="mgd-a11y mgd-a11y--<?php echo esc_attr($s['position']) ?>" style="--mgd-a11y-accent: <?php echo esc_attr($s['accent_color']) ?>">
+          <button class="mgd-a11y__trigger" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr($id) ?>"><span aria-hidden="true">♿</span><span><?php echo esc_html($s['button_label']) ?></span></button>
           <div class="mgd-a11y__backdrop" hidden></div>
-          <section id="<?= esc_attr($id) ?>" class="mgd-a11y__panel" role="dialog" aria-modal="true" aria-labelledby="mgd-a11y-title" aria-describedby="mgd-a11y-help" hidden tabindex="-1">
-            <header><h2 id="mgd-a11y-title"><?= esc_html($s['panel_title']) ?></h2><button type="button" class="mgd-a11y__close" aria-label="Einstellungen schließen">×</button></header>
+          <section id="<?php echo esc_attr($id) ?>" class="mgd-a11y__panel" role="dialog" aria-modal="true" aria-labelledby="mgd-a11y-title" aria-describedby="mgd-a11y-help" hidden tabindex="-1">
+            <header><h2 id="mgd-a11y-title"><?php echo esc_html($s['panel_title']) ?></h2><button type="button" class="mgd-a11y__close" aria-label="Einstellungen schließen">×</button></header>
             <p id="mgd-a11y-help">Die Auswahl wird nur auf diesem Gerät gespeichert und kann jederzeit zurückgesetzt werden.</p>
             <div class="mgd-a11y__controls">
               <button type="button" data-mgd-a11y="contrast" aria-pressed="false">Kontrast</button>
@@ -51,7 +51,7 @@ final class MGD_Barrierefrei_Renderer
               <button type="button" data-mgd-a11y="motion" aria-pressed="false">Bewegung stoppen</button>
             </div>
             <button class="mgd-a11y__reset" type="button" data-mgd-a11y="reset">Einstellungen zurücksetzen</button>
-            <footer><a href="https://michael-gahn.de" target="_blank" rel="noopener noreferrer">MGD Barrierefrei von Michael Gahn DESIGN</a></footer>
+            <?php if (!empty($s['show_credit'])) : ?><footer><a href="https://michael-gahn.de" target="_blank" rel="noopener noreferrer">MGD Barrierefrei von Michael Gahn DESIGN</a></footer><?php endif; ?>
           </section>
         </div>
         <?php
