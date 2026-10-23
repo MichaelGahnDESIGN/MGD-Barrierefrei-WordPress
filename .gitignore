@@ -1,0 +1,7 @@
+/release/
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.zip
+*.sha256

@@ -1,0 +1,27 @@
+name: Qualität
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: PHP-Syntax
+        run: find mgd-barrierefrei-wordpress -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: JavaScript-Syntax
+        run: node --check mgd-barrierefrei-wordpress/assets/js/frontend.js && node --check mgd-barrierefrei-wordpress/assets/js/admin.js
+      - name: Release-Paket
+        run: sh scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
+      - name: Geheimnisse prüfen
+        uses: gitleaks/gitleaks-action@v2
