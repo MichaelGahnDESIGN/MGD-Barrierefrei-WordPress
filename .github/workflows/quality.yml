@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   check:
@@ -25,3 +26,6 @@ jobs:
         run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
       - name: Geheimnisse prüfen
         uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITLEAKS_ENABLE_COMMENTS: 'false'
