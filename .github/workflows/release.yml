@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Paket bauen
-        run: sh scripts/build-release.sh
+        run: bash scripts/build-release.sh
       - name: GitHub-Release veröffentlichen
         env:
           GH_TOKEN: ${{ github.token }}

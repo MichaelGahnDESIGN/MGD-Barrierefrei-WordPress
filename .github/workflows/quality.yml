@@ -22,6 +22,6 @@ jobs:
       - name: JavaScript-Syntax
         run: node --check mgd-barrierefrei-wordpress/assets/js/frontend.js && node --check mgd-barrierefrei-wordpress/assets/js/admin.js
       - name: Release-Paket
-        run: sh scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
+        run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
       - name: Geheimnisse prüfen
         uses: gitleaks/gitleaks-action@v2
