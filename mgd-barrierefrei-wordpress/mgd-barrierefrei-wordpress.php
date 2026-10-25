@@ -26,7 +26,7 @@ define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));
 
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-settings.php';
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-statement.php';
-require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-catalog.php';
+require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-wordpress-plugin-catalog.php';
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-updater.php';
 require_once MGD_BARRIEREFREI_DIR . 'includes/class-mgd-barrierefrei-renderer.php';
 
@@ -36,7 +36,7 @@ add_action('plugins_loaded', static function (): void {
 
     $settings->register($statement);
     (new MGD_Barrierefrei_Renderer($settings))->register();
-    (new MGD_Barrierefrei_Catalog())->register();
+    (new MGD_WordPress_Plugin_Catalog_V4())->register('mgd-barrierefrei');
     (new MGD_Barrierefrei_Updater())->register();
 });
 

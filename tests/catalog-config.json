@@ -1,0 +1,6 @@
+{
+  "runtime": "mgd-barrierefrei-wordpress",
+  "main": "mgd-barrierefrei-wordpress.php",
+  "version": "1.0.1",
+  "slug": "mgd-barrierefrei"
+}

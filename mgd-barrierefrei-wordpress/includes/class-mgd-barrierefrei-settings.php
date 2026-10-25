@@ -159,7 +159,6 @@ final class MGD_Barrierefrei_Settings
           <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
-          <?php (new MGD_Barrierefrei_Catalog())->render(); ?>
         </div>
         <?php
     }
