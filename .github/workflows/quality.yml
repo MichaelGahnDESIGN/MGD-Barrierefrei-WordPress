@@ -21,6 +21,8 @@ jobs:
         run: find mgd-barrierefrei-wordpress -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JavaScript-Syntax
         run: node --check mgd-barrierefrei-wordpress/assets/js/frontend.js && node --check mgd-barrierefrei-wordpress/assets/js/admin.js
+      - name: Katalog und Updatezustand
+        run: php tests/catalog-package.php && php tests/catalog-update-state.php
       - name: Release-Paket
         run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
       - name: Geheimnisse prüfen

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "platform": "wordpress",
+  "channel": "github",
+  "externalCatalog": true,
+  "runtime": "mgd-barrierefrei-wordpress",
+  "packageRoot": "mgd-barrierefrei-wordpress",
+  "icon": "mgd-barrierefrei-wordpress/assets/mgd-plugin-icon.svg",
+  "cardBackground": "mgd-barrierefrei-wordpress/assets/plugin-catalog/backgrounds/accessibility.webp",
+  "readme": "README.md",
+  "changelog": "CHANGELOG.md",
+  "documentation": "docs/wiki/Home.md"
+}

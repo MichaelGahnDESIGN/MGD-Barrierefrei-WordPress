@@ -13,7 +13,7 @@ Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpass
 - modernes WordPress-Dashboard für Position, Akzentfarbe, Texte und Kontaktangaben
 - Generator erstellt oder aktualisiert eine bearbeitbare WordPress-Seite als Entwurf
 - Update-Prüfung über veröffentlichte GitHub-Releases, ohne GitHub-Token im Plugin
-- Empfehlungen weiterer MGD-Plugins nur im Backend über den datensparsamen Katalog von `theme.michael-gahn.de`
+- gemeinsame Übersicht weiterer MGD-Plugins nur im Backend, mit sieben Karten, passenden lokalen Bildern, Suche und Filtern
 
 ## Installation
 
@@ -36,7 +36,7 @@ WordPress installiert das ZIP anschließend über seinen üblichen Plugin-Update
 
 ## Datenschutz und Sicherheit
 
-Das Plugin übermittelt keine Besucherpräferenzen. Frontend-Einstellungen liegen im Browser und können über „Einstellungen zurücksetzen“ entfernt werden. Die optionale Backend-Empfehlung ruft höchstens einmal täglich einen öffentlichen JSON-Katalog ab; bei Fehlern bleibt sie leer. Es sind keine Zugangsdaten, Tokens oder Fernsteuerungsfunktionen enthalten.
+Das Plugin übermittelt keine Besucherpräferenzen. Frontend-Einstellungen liegen im Browser und können über „Einstellungen zurücksetzen“ entfernt werden. Die Backend-Empfehlungen laden öffentliche Produktmetadaten von `theme.michael-gahn.de`; dargestellt werden sie durch die lokal mitgelieferte Katalogkomponente. Die lokale Ersatzliste und die eigenen Icons und Hintergrundbilder bleiben bei Ausfällen verfügbar. Der Katalog lädt keinen ausführbaren Code nach. Installation und Updates werden ausschließlich durch eine ausdrückliche Verwaltungsaktion gestartet. Es sind keine Zugangsdaten, Tokens oder Fernsteuerungsfunktionen enthalten.
 
 ## Barrierefreiheit
 
@@ -48,7 +48,11 @@ Die Bedienoberfläche nutzt native Buttons, `aria-pressed`, einen Fokusfang im M
 ./scripts/build-release.sh
 ```
 
-Der Befehl erzeugt `release/mgd-barrierefrei-wordpress.zip`, eine SHA-256-Datei und prüft das Archiv. `release/` ist nicht versioniert.
+Der Befehl erzeugt `release/mgd-barrierefrei-wordpress.zip`, eine SHA-256-Datei und prüft das fertige Archiv auf Pluginwurzel, Version, Katalogdateien und unerwünschte Entwicklungsdateien. `mgd-plugin.json` beschreibt die Pflichtbilder und Dokumentation; der Paketprüfer stammt aus dem MGD Plugin Builder. `release/` ist nicht versioniert.
+
+## 1.0.2 – Gemeinsame Plugin-Kollektion
+
+Der Bereich **Weitere Plugins** nutzt dieselbe lokale Katalogkomponente wie die übrigen aktuellen MGD-Plugins. Sieben Karten bieten passende Icons und Hintergrundbilder, Suche, Filter, Installationsstatus und eine Detailansicht. Die Zentrale liefert öffentliche Metadaten; Darstellung und Ersatzbilder werden mit dem Plugin ausgeliefert. [Release-Anleitung](docs/wiki/Updates-und-Releases.md) · [Änderungsprotokoll](CHANGELOG.md).
 
 ## Lizenz
 

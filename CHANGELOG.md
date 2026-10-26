@@ -2,6 +2,18 @@
 
 Alle wichtigen Änderungen werden in dieser Datei dokumentiert.
 
+## 1.0.2 – 2026-10-26
+
+- Die gemeinsame Plugin-Kollektion zeigt sieben WordPress-Plugins mit lokalen Icons und passenden Hintergrundbildern, Suche, Filtern und Detailansicht.
+- Der Katalog bleibt auch dann vollständig, wenn im zentralen Feed keine Bilder gepflegt sind oder die Quelle vorübergehend nicht erreichbar ist.
+- Einheitliche Katalogklasse V4 verhindert doppelte Empfehlungsseiten beim gemeinsamen Betrieb mehrerer aktueller MGD-Plugins.
+- Release-Paket und Versionsangaben werden vor der Veröffentlichung gemeinsam geprüft.
+
+## 1.0.1 – 2026-10-23
+
+- Separate manuelle Update-Prüfung und Hersteller-/Dokumentationslinks in der Pluginliste.
+- Ergänzte lokale Plugin-Details und Verwaltungsanleitung.
+
 ## 1.0.0 – 2026-10-23
 
 - Erste öffentliche Version mit lokalem Bedienpanel, anpassbarem Design und Tastaturbedienung.
