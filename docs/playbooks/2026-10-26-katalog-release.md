@@ -38,4 +38,8 @@ Das bereits lokal integrierte V4-Katalogpaket als installierbare GitHub-Ausgabe 
 
 ## Abschluss
 
-Release 1.0.2 ist lokal vorbereitet und gezielt geprüft. Die Git-Linien müssen vor dem Push zusammengeführt werden. Lokaler Release-Build ist kein veröffentlichter GitHub-Release und kein Live-Deployment. Eine Installation dieser neuen ZIP übernimmt die separate isolierte WordPress-Abnahme des Hauptagenten.
+Release 1.0.2 ist veröffentlicht: Die entfernte Sicherheitskonfiguration wurde in `65aa096` erhalten und mit dem lokalen Katalogstand zusammengeführt. Qualitäts-CI und Release-CI sind erfolgreich. Das zurückgeladene öffentliche ZIP hat SHA-256 `0ec901236815c92db2d4becce3aa428e07f05fd95ba66b4f3ee65e4ebae96cc3`; alle 36 Dateien stimmen bytegleich mit den Quellen überein. Die CI-ZIP-Dateizeitstempel unterscheiden sich vom oben dokumentierten lokalen Build, nicht die Dateiinhalte.
+
+Der Hauptagent installierte das neue Paket in einer eigenen WordPress-7.1.3-/PHP-8.5.12-Instanz und öffnete den Katalog mit ausschließlich Barrierefrei als aktivem MGD-Plugin: sieben Karten, 17 geladene Bilder und Katalogskript aus dem eigenen Pluginordner. Danach wurde das vorige Release 1.0.1 erneut eingesetzt und über ein echtes GitHub-Update nativ auf 1.0.2 aktualisiert. Die Gegenprobe zusammen mit Giveaway bestätigt zwölf unveränderte fachliche Optionen. Kein Kunden-/Plattform-Deployment.
+
+[Veröffentlichter Release](https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress/releases/tag/v1.0.2) · [Release-CI](https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress/actions/runs/40385094970). Das Ziel dieses Playbooks ist erreicht.
