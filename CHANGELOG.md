@@ -2,6 +2,11 @@
 
 Alle wichtigen Änderungen werden in dieser Datei dokumentiert.
 
+## 1.0.3 – 2026-10-27
+
+- Icons und Hintergründe der Karten unter „Weitere Plugins" kommen jetzt aus theme.michael-gahn.de. Sie werden vom Server einmal geholt und lokal gespeichert, der Browser lädt nichts extern. Ohne Bild bleibt das mitgelieferte Motiv.
+- Versionen werden ohne führendes „v" angezeigt.
+
 ## 1.0.2 – 2026-10-26
 
 - Die gemeinsame Plugin-Kollektion zeigt sieben WordPress-Plugins mit lokalen Icons und passenden Hintergrundbildern, Suche, Filtern und Detailansicht.
