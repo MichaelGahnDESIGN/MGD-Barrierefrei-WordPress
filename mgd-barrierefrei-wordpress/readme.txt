@@ -3,7 +3,7 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Update
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.0.3 =
+* Icons und Hintergründe der Karten unter "Weitere Plugins" kommen jetzt aus theme.michael-gahn.de (vom Server einmal geholt und lokal gespeichert, der Browser lädt nichts extern). Ohne Bild bleibt das mitgelieferte Motiv.
+* Versionen werden ohne führendes "v" angezeigt.
 
 = 1.0.2 =
 * Gemeinsame Plugin-Kollektion mit sieben Karten, lokalen Icons und Hintergrundmotiven, Suche, Filtern und Detailansicht.

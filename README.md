@@ -50,6 +50,10 @@ Die Bedienoberfläche nutzt native Buttons, `aria-pressed`, einen Fokusfang im M
 
 Der Befehl erzeugt `release/mgd-barrierefrei-wordpress.zip`, eine SHA-256-Datei und prüft das fertige Archiv auf Pluginwurzel, Version, Katalogdateien und unerwünschte Entwicklungsdateien. `mgd-plugin.json` beschreibt die Pflichtbilder und Dokumentation; der Paketprüfer stammt aus dem MGD Plugin Builder. `release/` ist nicht versioniert.
 
+## 1.0.3 – Icons und Hintergründe aus dem Feed
+
+Die Karten unter **Weitere Plugins** bekommen Icons und Hintergründe aus theme.michael-gahn.de. Der Server holt sie einmal und speichert sie lokal; der Browser lädt nichts extern. Ohne Bild bleibt das mitgelieferte Motiv. Versionen erscheinen ohne führendes „v". [Änderungsprotokoll](CHANGELOG.md).
+
 ## 1.0.2 – Gemeinsame Plugin-Kollektion
 
 Der Bereich **Weitere Plugins** nutzt dieselbe lokale Katalogkomponente wie die übrigen aktuellen MGD-Plugins. Sieben Karten bieten passende Icons und Hintergrundbilder, Suche, Filter, Installationsstatus und eine Detailansicht. Die Zentrale liefert öffentliche Metadaten; Darstellung und Ersatzbilder werden mit dem Plugin ausgeliefert. [Release-Anleitung](docs/wiki/Updates-und-Releases.md) · [Änderungsprotokoll](CHANGELOG.md).

@@ -4,6 +4,10 @@ WordPress prüft in den üblichen Abständen die öffentliche GitHub-Release-API
 
 Vor einem Update empfiehlt sich eine Sicherung von Dateien und Datenbank. Nach dem Update bitte die Bedienhilfe im Frontend, die Einstellungsseite und den Entwurf der Erklärung kontrollieren.
 
+## Version 1.0.3
+
+Die Karten unter „Weitere Plugins" zeigen Icons und Hintergründe aus theme.michael-gahn.de. Der Server holt jedes Bild einmal und speichert es lokal, der Browser lädt nichts von extern. Fehlt ein Bild, bleibt das mitgelieferte Motiv. Versionen werden ohne führendes „v" angezeigt. Die Datei heißt weiterhin `mgd-barrierefrei-wordpress.zip` und enthält die Version 1.0.3.
+
 ## Version 1.0.2
 
 Der Release übernimmt die gemeinsame Plugin-Kollektion V4. Sie enthält sieben lokale Kartenmotive und Icons sowie Suche, Filter und eine Detailansicht. Dadurch erscheint die gleiche Übersicht auch dann, wenn nur MGD Barrierefrei installiert ist. Der zentrale Feed ergänzt lediglich öffentliche Metadaten; bei einer Störung bleibt die lokale Ersatzliste verfügbar.
