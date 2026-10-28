@@ -3,3 +3,9 @@
 .mgd-a11y-preview__page button { max-width: 100%; justify-self: start; cursor: default; }
 .mgd-a11y-preview__button-label { overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { .mgd-a11y-admin *, .mgd-a11y-admin *::before, .mgd-a11y-admin *::after { transition: none !important; } }
+
+.mgd-a11y-compatibility__facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:1rem 0; }
+.mgd-a11y-compatibility__facts > div { padding:1rem; border:1px solid #d8e1e6; border-radius:10px; background:#f7fafc; }
+.mgd-a11y-compatibility__facts dt { color:#536576; font-size:.85rem; font-weight:600; }
+.mgd-a11y-compatibility__facts dd { margin:.25rem 0 0; overflow-wrap:anywhere; font-weight:700; }
+@media(max-width:782px) { .mgd-a11y-compatibility__facts { grid-template-columns:1fr; } }
