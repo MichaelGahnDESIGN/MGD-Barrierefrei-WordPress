@@ -1,5 +1,7 @@
 # MGD Barrierefrei für WordPress
 
+**Aktueller Entwicklungsstand: 1.0.4** – verbesserte Dialogbedienung und Theme-Diagnose; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
 > Die Bedienhilfe kann einzelne Darstellungspräferenzen erleichtern. Sie ersetzt weder eine barrierefreie Gestaltung noch Tests mit echten Nutzerinnen und Nutzern. Der erzeugte Erklärungstext ist ein Entwurf und keine Rechtsberatung.

@@ -2,19 +2,70 @@ name: Release
 
 on:
   push:
+    branches: [main]
     tags: ['v*.*.*']
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: mgd-barrierefrei-release
+  cancel-in-progress: false
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Paket bauen
-        run: bash scripts/build-release.sh
-      - name: GitHub-Release veröffentlichen
+      - name: Version und bestehendes Release prüfen
+        id: version
         env:
           GH_TOKEN: ${{ github.token }}
-        run: package=$(find release -maxdepth 1 -type f -name '*.zip' -print -quit); gh release create "$GITHUB_REF_NAME" "$package" "$package.sha256" --title "MGD Barrierefrei $GITHUB_REF_NAME" --generate-notes
+        run: |
+          version=$(sed -n 's/^[[:space:]]*\* Version: //p' mgd-barrierefrei-wordpress/mgd-barrierefrei-wordpress.php | head -n1 | tr -d '\r')
+          test -n "$version"
+          test "$(sed -n "s/^define('MGD_BARRIEREFREI_VERSION', '\([^']*\)').*/\1/p" mgd-barrierefrei-wordpress/mgd-barrierefrei-wordpress.php)" = "$version"
+          test "$(sed -n 's/^Stable tag: //p' mgd-barrierefrei-wordpress/readme.txt)" = "$version"
+          tag="v$version"
+          if [[ "$GITHUB_REF_TYPE" == "tag" && "$GITHUB_REF_NAME" != "$tag" ]]; then
+            echo "Tag und Plugin-Version unterscheiden sich" >&2
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: shivammathur/setup-php@v2
+        if: steps.version.outputs.publish == 'true'
+        with:
+          php-version: '8.2'
+      - name: PHP- und JavaScript-Syntax prüfen
+        if: steps.version.outputs.publish == 'true'
+        run: |
+          find mgd-barrierefrei-wordpress -name '*.php' -print0 | xargs -0 -n1 php -l
+          node --check mgd-barrierefrei-wordpress/assets/js/frontend.js
+          node --check mgd-barrierefrei-wordpress/assets/js/admin.js
+      - name: Katalogtests
+        if: steps.version.outputs.publish == 'true'
+        run: |
+          php tests/catalog-package.php
+          php tests/catalog-update-state.php
+          php tests/catalog-media.php
+      - name: Paket bauen
+        if: steps.version.outputs.publish == 'true'
+        run: bash scripts/build-release.sh
+      - name: GitHub-Release veröffentlichen
+        if: steps.version.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          gh release create "$TAG" \
+            release/mgd-barrierefrei-wordpress.zip \
+            release/mgd-barrierefrei-wordpress.zip.sha256 \
+            --target "$GITHUB_SHA" \
+            --title "MGD Barrierefrei $TAG" \
+            --generate-notes

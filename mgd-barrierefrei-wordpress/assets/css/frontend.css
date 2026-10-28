@@ -19,3 +19,9 @@ html.mgd-a11y-focus :focus-visible { outline: 4px solid #005fcc !important; outl
 .mgd-a11y button:focus-visible, .mgd-a11y a:focus-visible { outline: 4px solid #005fcc; outline-offset: 3px; }
 @media (max-width: 480px) { .mgd-a11y--left { left: .5rem; }.mgd-a11y--right { right: .5rem; }.mgd-a11y--left .mgd-a11y__panel { left: .5rem; }.mgd-a11y--right .mgd-a11y__panel { right: .5rem; }.mgd-a11y__trigger span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
 @media (prefers-reduced-motion: reduce) { .mgd-a11y *, .mgd-a11y *::before, .mgd-a11y *::after { animation: none !important; transition: none !important; } }
+
+/* Honor hidden even when theme styles set display. */
+.mgd-a11y [hidden] { display: none !important; }
+.mgd-a11y__panel { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
+.mgd-a11y__controls button:disabled { opacity: .55; cursor: not-allowed; }
+@media (max-width: 480px) { .mgd-a11y__panel { max-height: calc(100dvh - 1rem); } }

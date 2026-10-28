@@ -3,7 +3,7 @@
  * Plugin Name: MGD Barrierefrei
  * Plugin URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Description: Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Update URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('MGD_BARRIEREFREI_VERSION', '1.0.3');
+define('MGD_BARRIEREFREI_VERSION', '1.0.4');
 define('MGD_BARRIEREFREI_FILE', __FILE__);
 define('MGD_BARRIEREFREI_DIR', plugin_dir_path(__FILE__));
 define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));
@@ -53,7 +53,7 @@ require_once __DIR__ . '/includes/class-mgd-plugin-admin-tools.php';
     'slug' => 'mgd-barrierefrei-wordpress',
     'name' => 'MGD Barrierefrei',
     'description' => 'Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit.',
-    'version' => '1.0.3',
+    'version' => '1.0.4',
     'settings' => 'admin.php?page=mgd-barrierefrei',
     'requires' => '6.5',
     'php' => '8.1',

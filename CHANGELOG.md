@@ -2,6 +2,13 @@
 
 Alle wichtigen Änderungen werden in dieser Datei dokumentiert.
 
+## 1.0.4 – 2026-10-28
+
+- Dialog lässt sich verlässlich über Schließen, Escape und Overlay ausblenden, auch bei konkurrierendem Theme-CSS.
+- Fokusführung und lokale Bedienzustände robuster gestaltet; Dialog auf kleinen Bildschirmen scrollbar.
+- Live-Vorschau im Backend repariert; aktive Theme- und Builder-Erkennung ergänzt.
+- Theme-Testmatrix für Divi, Elementor und weitere WordPress-Themes hinzugefügt (keine Testzertifizierung).
+
 ## 1.0.3 – 2026-10-27
 
 - Icons und Hintergründe der Karten unter „Weitere Plugins" kommen jetzt aus theme.michael-gahn.de. Sie werden vom Server einmal geholt und lokal gespeichert, der Browser lädt nichts extern. Ohne Bild bleibt das mitgelieferte Motiv.
