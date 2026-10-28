@@ -154,6 +154,29 @@ final class MGD_Barrierefrei_Settings
               <p><label for="mgd-a11y-barriers">Bekannte Barrieren oder geplante Verbesserungen</label><textarea id="mgd-a11y-barriers" name="mgd_barrierefrei[known_barriers]" rows="5" placeholder="Zum Beispiel: Einzelne ältere PDF-Dateien werden schrittweise überarbeitet."><?= esc_textarea($s['known_barriers']) ?></textarea></p>
               <p><label for="mgd-a11y-page">Vorhandene Seite für den Entwurf</label><?php wp_dropdown_pages(['name' => 'mgd_barrierefrei[statement_page_id]', 'id' => 'mgd-a11y-page', 'show_option_none' => 'Neue Seite beim Erstellen anlegen', 'option_none_value' => '0', 'selected' => (int) $s['statement_page_id']]); ?></p>
             </section>
+            <section class="mgd-a11y-card mgd-a11y-compatibility" aria-labelledby="mgd-a11y-compat-title">
+              <h2 id="mgd-a11y-compat-title">Theme- und Page-Builder-Kompatibilität</h2>
+              <p>Die Bedienhilfe nutzt WordPress-Standards und benötigt keine speziellen Divi- oder Elementor-Module. Das zeigt keine bestandene Prüfung auf deiner Website an.</p>
+              <?php
+              $theme = wp_get_theme();
+              $theme_name = $theme->parent() ? $theme->parent()->get('Name') : $theme->get('Name');
+              $builders = [];
+              if (defined('ELEMENTOR_VERSION')) {
+                  $builders[] = 'Elementor';
+              }
+              if (defined('ET_BUILDER_VERSION') || function_exists('et_setup_theme') || strtolower((string) $theme->get_template()) === 'divi') {
+                  $builders[] = 'Divi';
+              }
+              if (defined('FL_BUILDER_VERSION')) {
+                  $builders[] = 'Beaver Builder';
+              }
+              ?>
+              <dl class="mgd-a11y-compatibility__facts">
+                <div><dt>Aktives Theme</dt><dd><?= esc_html((string) $theme_name) ?></dd></div>
+                <div><dt>Erkannte Builder</dt><dd><?= esc_html($builders ? implode(', ', array_unique($builders)) : 'Kein unterstützter Builder erkannt') ?></dd></div>
+              </dl>
+              <p class="description">Bitte im Frontend testen: Öffnen und Schließen, Escape, Tastaturnavigation, Mobilansicht sowie alle Darstellungsoptionen. Caching- und Optimierungsplugins können veraltetes CSS oder JavaScript ausliefern.</p>
+            </section>
             <p class="submit"><button class="button button-primary button-hero" type="submit">Einstellungen speichern</button></p>
           </form>
           <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
