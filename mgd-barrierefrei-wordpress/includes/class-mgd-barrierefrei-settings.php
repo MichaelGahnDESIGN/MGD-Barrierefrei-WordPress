@@ -18,6 +18,10 @@ final class MGD_Barrierefrei_Settings
         return [
             'enabled' => true,
             'button_label' => 'Barrierefreiheit',
+            'button_label_en' => 'Accessibility',
+            'default_lang' => 'auto',
+            'default_theme' => 'auto',
+            'offset' => 0,
             'position' => 'left',
             'accent_color' => '#c8171f',
             'panel_title' => 'Einstellungen für bessere Lesbarkeit',
@@ -92,6 +96,10 @@ final class MGD_Barrierefrei_Settings
         $next = [
             'enabled' => !empty($raw['enabled']),
             'button_label' => sanitize_text_field((string) ($raw['button_label'] ?? $current['button_label'])),
+            'button_label_en' => sanitize_text_field((string) ($raw['button_label_en'] ?? $current['button_label_en'])),
+            'default_lang' => in_array(($raw['default_lang'] ?? ''), ['auto', 'de', 'en'], true) ? $raw['default_lang'] : 'auto',
+            'default_theme' => in_array(($raw['default_theme'] ?? ''), ['auto', 'light', 'dark'], true) ? $raw['default_theme'] : 'auto',
+            'offset' => max(0, min(200, absint($raw['offset'] ?? 0))),
             'position' => in_array(($raw['position'] ?? ''), ['left', 'right'], true) ? $raw['position'] : 'left',
             'accent_color' => $colors ?: '#c8171f',
             'panel_title' => sanitize_text_field((string) ($raw['panel_title'] ?? $current['panel_title'])),
@@ -133,12 +141,15 @@ final class MGD_Barrierefrei_Settings
             <div class="mgd-a11y-layout">
               <section class="mgd-a11y-card"><h2>Darstellung</h2>
                 <p class="description">Alle Werte wirken erst nach dem Speichern auf der Website.</p>
-                <?php $this->text('button_label', 'Beschriftung des Schalters', $s['button_label']); ?>
-                <?php $this->text('panel_title', 'Titel im Modal', $s['panel_title']); ?>
+                <?php $this->text('button_label', 'Beschriftung Deutsch (erscheint bei Mauskontakt)', $s['button_label']); ?>
+                <?php $this->text('button_label_en', 'Beschriftung Englisch', $s['button_label_en']); ?>
+                <p><label for="mgd-a11y-default_lang">Standard-Sprache</label><select id="mgd-a11y-default_lang" name="mgd_barrierefrei[default_lang]"><option value="auto" <?= selected($s['default_lang'], 'auto', false) ?>>Automatisch (Sprache der Website)</option><option value="de" <?= selected($s['default_lang'], 'de', false) ?>>Deutsch</option><option value="en" <?= selected($s['default_lang'], 'en', false) ?>>Englisch</option></select><span class="description">Besucher können jederzeit selbst zwischen DE und EN wechseln.</span></p>
+                <p><label for="mgd-a11y-default_theme">Standard-Design</label><select id="mgd-a11y-default_theme" name="mgd_barrierefrei[default_theme]"><option value="auto" <?= selected($s['default_theme'], 'auto', false) ?>>Automatisch (wie das Gerät)</option><option value="light" <?= selected($s['default_theme'], 'light', false) ?>>Hell</option><option value="dark" <?= selected($s['default_theme'], 'dark', false) ?>>Dunkel</option></select><span class="description">Besucher können jederzeit selbst zwischen Hell und Dunkel wechseln.</span></p>
+                <p><label for="mgd-a11y-offset">Abstand nach oben (Pixel)</label><input id="mgd-a11y-offset" type="number" min="0" max="200" step="1" name="mgd_barrierefrei[offset]" value="<?= esc_attr((string) $s['offset']) ?>"><span class="description">Hebt den Button an, falls er z. B. einen Chat- oder Nach-oben-Button verdeckt.</span></p>
                 <p><label for="mgd-a11y-position">Position</label><select id="mgd-a11y-position" name="mgd_barrierefrei[position]"><option value="left" <?= selected($s['position'], 'left', false) ?>>Unten links</option><option value="right" <?= selected($s['position'], 'right', false) ?>>Unten rechts</option></select></p>
                 <p><label for="mgd-a11y-color">Akzentfarbe</label><input id="mgd-a11y-color" type="color" name="mgd_barrierefrei[accent_color]" value="<?= esc_attr($s['accent_color']) ?>"></p>
               </section>
-              <aside class="mgd-a11y-preview" aria-label="Vorschau der Bedienhilfe"><span class="mgd-a11y-preview__label">Vorschau</span><div class="mgd-a11y-preview__page"><strong><?= esc_html(get_bloginfo('name')) ?></strong><span>Deine Inhalte bleiben im Mittelpunkt.</span><button type="button" style="--mgd-accent: <?= esc_attr($s['accent_color']) ?>"><span aria-hidden="true">♿</span><span class="mgd-a11y-preview__button-label"><?= esc_html($s['button_label']) ?></span></button></div></aside>
+              <aside class="mgd-a11y-preview" aria-label="Vorschau der Bedienhilfe"><span class="mgd-a11y-preview__label">Vorschau</span><div class="mgd-a11y-preview__page"><strong><?= esc_html(get_bloginfo('name')) ?></strong><span>Deine Inhalte bleiben im Mittelpunkt.</span><button type="button" style="--mgd-accent: <?= esc_attr($s['accent_color']) ?>"><span aria-hidden="true" class="mgd-a11y-preview__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.2" stroke-width="1.6"/><circle cx="12" cy="6.9" r="1.55" fill="currentColor" stroke="none"/><path d="M6.6 9.6 12 10.8l5.4-1.2"/><path d="M12 10.8v3.6"/><path d="m9.2 18.4 2.8-4 2.8 4"/></svg></span><span class="mgd-a11y-preview__button-label"><?= esc_html($s['button_label']) ?></span></button></div></aside>
             </div>
             <section class="mgd-a11y-card"><h2>Erklärung zur Barrierefreiheit</h2><p>Der Generator erstellt einen bearbeitbaren Entwurf. Prüfe ihn vor der Veröffentlichung rechtlich und fachlich für dein Angebot.</p>
               <div class="mgd-a11y-fields">
@@ -156,7 +167,7 @@ final class MGD_Barrierefrei_Settings
             </section>
             <section class="mgd-a11y-card mgd-a11y-compatibility" aria-labelledby="mgd-a11y-compat-title">
               <h2 id="mgd-a11y-compat-title">Theme- und Page-Builder-Kompatibilität</h2>
-              <p>Die Bedienhilfe nutzt WordPress-Standards und benötigt keine speziellen Divi- oder Elementor-Module. Das zeigt keine bestandene Prüfung auf deiner Website an.</p>
+              <p>Die Bedienhilfe hängt sich über WordPress-Standards an jede Seite. Sie liegt in einem abgeschirmten Bereich (Shadow DOM), damit Theme- und Builder-CSS sie nicht verändert. Im Editor von Divi, Elementor, Bricks, Beaver Builder, Oxygen, Breakdance und Co. wird sie automatisch ausgeblendet. Getestet: Divi 4, Divi 5, Elementor, Block-Themes. Diese Anzeige ersetzt keinen Test auf deiner Website.</p>
               <?php
               $theme = wp_get_theme();
               $theme_name = $theme->parent() ? $theme->parent()->get('Name') : $theme->get('Name');
@@ -169,6 +180,33 @@ final class MGD_Barrierefrei_Settings
               }
               if (defined('FL_BUILDER_VERSION')) {
                   $builders[] = 'Beaver Builder';
+              }
+              if (defined('BRICKS_VERSION')) {
+                  $builders[] = 'Bricks';
+              }
+              if (defined('CT_VERSION')) {
+                  $builders[] = 'Oxygen';
+              }
+              if (defined('__BREAKDANCE_VERSION') || defined('BREAKDANCE_WOO_DIR')) {
+                  $builders[] = 'Breakdance';
+              }
+              if (defined('WPB_VC_VERSION')) {
+                  $builders[] = 'WPBakery';
+              }
+              if (defined('BRIZY_VERSION')) {
+                  $builders[] = 'Brizy';
+              }
+              if (defined('KADENCE_VERSION') || defined('KADENCE_BLOCKS_VERSION')) {
+                  $builders[] = 'Kadence';
+              }
+              if (defined('GENERATEBLOCKS_VERSION')) {
+                  $builders[] = 'GenerateBlocks';
+              }
+              if (defined('SPECTRA_VER') || defined('UAGB_VER')) {
+                  $builders[] = 'Spectra';
+              }
+              if (wp_is_block_theme()) {
+                  $builders[] = 'Block-Theme (Site Editor)';
               }
               ?>
               <dl class="mgd-a11y-compatibility__facts">

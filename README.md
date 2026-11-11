@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktueller Entwicklungsstand: 1.0.4** – verbesserte Dialogbedienung und Theme-Diagnose; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktueller Entwicklungsstand: 1.1.0** – neue Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
@@ -9,7 +9,9 @@ Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpass
 ## Funktionen
 
 - gut erreichbarer Schalter mit tastaturbedienbarem Modal und sichtbarem Fokus
-- Kontrast, Graustufen, größere oder kleinere Schrift, Lesemodus, Link-Hervorhebung und „Bewegung stoppen“
+- 10 Funktionen: Schriftgröße, hoher Kontrast, Graustufen, mehr Abstand, lesbare Schrift, Links hervorheben, Fokus sichtbar, Bewegung stoppen, großer Mauszeiger, Lese-Lineal – jede mit Symbol und (?)-Erklärung
+- Besucher wählen DE/EN und Hell/Dunkel; die Standards stellst du im Backend ein
+- läuft mit Divi 4/5, Elementor, Bricks, Beaver Builder, Oxygen, Breakdance, Block-Themes; im Builder-Editor automatisch ausgeblendet
 - Präferenzen bleiben ausschließlich im `localStorage` des verwendeten Browsers
 - keine Analyse, keine Cookies, keine externen Schriften oder Drittanbieter-Skripte
 - modernes WordPress-Dashboard für Position, Akzentfarbe, Texte und Kontaktangaben

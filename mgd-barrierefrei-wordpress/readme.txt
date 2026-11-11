@@ -3,7 +3,7 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,11 @@ Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Update
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.1.0 =
+* Bedienhilfe komplett überarbeitet: neues Symbol, Text nur bei Hover, DE/EN, Hell/Dunkel, Standards im Backend.
+* Jede Funktion mit Symbol und (?)-Erklärung. 10 Funktionen, die auch bei Divi, Elementor und Co. wirken.
+* Im Editor der Page-Builder automatisch ausgeblendet. Cache-Plugins verzögern das Skript nicht mehr.
 
 = 1.0.4 =
 * Fehlerbehebung beim Schließen der Bedienhilfe und Verbesserungen der Tastaturbedienung.

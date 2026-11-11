@@ -9,3 +9,10 @@
 .mgd-a11y-compatibility__facts dt { color:#536576; font-size:.85rem; font-weight:600; }
 .mgd-a11y-compatibility__facts dd { margin:.25rem 0 0; overflow-wrap:anywhere; font-weight:700; }
 @media(max-width:782px) { .mgd-a11y-compatibility__facts { grid-template-columns:1fr; } }
+/* Vorschau neuer Button - Text nur bei Hover wie im Frontend */
+.mgd-a11y-preview__page button { display:inline-flex; align-items:center; gap:0; padding:.6rem; }
+.mgd-a11y-preview__icon { display:block; width:30px; height:30px; }
+.mgd-a11y-preview__icon svg { width:100%; height:100%; display:block; }
+.mgd-a11y-preview__button-label { max-width:0; overflow:hidden; white-space:nowrap; opacity:0; transition:max-width .3s ease, opacity .2s ease, margin .3s ease; }
+.mgd-a11y-preview__page button:hover .mgd-a11y-preview__button-label { max-width:240px; opacity:1; margin:0 .6rem 0 .5rem; }
+.mgd-a11y-card .description { display:block; margin-top:.3rem; }

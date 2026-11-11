@@ -16,3 +16,5 @@ MGD Barrierefrei ergänzt eine WordPress-Seite um eine lokale Bedienhilfe und ei
 - [Erklärung zur Barrierefreiheit](Erklaerung-zur-Barrierefreiheit.md)
 - [Updates und Releases](Updates-und-Releases.md)
 - [Datenschutz und Sicherheit](Datenschutz-und-Sicherheit.md)
+
+- [Bedienhilfe für Besucher](Bedienhilfe.md)
