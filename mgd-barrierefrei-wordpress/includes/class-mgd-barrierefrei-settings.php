@@ -221,7 +221,7 @@ final class MGD_Barrierefrei_Settings
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
           <?php // Free-Lizenz Schalter (eigenes Formular, HTML kommt escaped aus dem Install-Client)
-          $mgd_install = \MGD\Barrierefrei\Install\Platform\WordPress::settingsHtml('mgd-barrierefrei', 'wordpress', MGD_BARRIEREFREI_VERSION);
+          $mgd_install = \MGD\Barrierefrei\Install\Platform\WordPress::settingsHtml('mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION);
           if ($mgd_install !== '') : ?>
           <section class="mgd-a11y-card" id="mgd-install"><h2>Anmeldung der Installation</h2>
             <?= $mgd_install // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

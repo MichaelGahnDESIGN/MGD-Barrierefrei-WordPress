@@ -3,7 +3,7 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,9 @@ Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Update
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.5.1 =
+* Eigener Produktname mgd-barrierefrei-wordpress für die Anmeldung, damit WordPress-Installationen getrennt gezählt werden. Das Release enthält zusätzlich eine ZIP-Datei mit Versionsnummer im Namen.
 
 = 1.5.0 =
 * Neu: Anmeldung der Installation (Free-Lizenz). Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen. Das Plugin funktioniert auch ohne Meldung genauso weiter.

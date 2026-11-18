@@ -16,8 +16,8 @@ $settings = (string) file_get_contents($base . 'includes/class-mgd-barrierefrei-
 $hint = (string) file_get_contents($base . 'includes/Install/Settings.php');
 
 $check(is_file($base . 'includes/Install/InstallClient.php') && is_file($base . 'includes/Install/Platform/WordPress.php'), 'Install-Client liegt im Plugin');
-$check(str_contains($main, "WordPress::boot(__FILE__, 'mgd-barrierefrei', 'wordpress', MGD_BARRIEREFREI_VERSION"), 'boot mit Produktname der Update-Datei');
-$check(str_contains($settings, "settingsHtml('mgd-barrierefrei', 'wordpress'"), 'Schalter auf der Einstellungsseite');
+$check(str_contains($main, "WordPress::boot(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION"), 'boot mit Produktname der Update-Datei');
+$check(str_contains($settings, "settingsHtml('mgd-barrierefrei-wordpress', 'wordpress'"), 'Schalter auf der Einstellungsseite');
 $check(str_contains($main, $kurz) && str_contains($readme, $kurz), 'Kurztext in Plugin-Header und readme.txt');
 $check(!str_contains($hint, 'ENTWURF'), 'Hinweistext freigegeben');
 
@@ -29,7 +29,7 @@ require_once $base . 'includes/Install/CurlTransport.php';
 require_once $base . 'includes/Install/InstallClient.php';
 require_once $base . 'includes/Install/Factory.php';
 $v = '';
-$c = \MGD\Barrierefrei\Install\Factory::create(new \MGD\Barrierefrei\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei', 'wordpress', '1.5.0', 'example.org');
+$c = \MGD\Barrierefrei\Install\Factory::create(new \MGD\Barrierefrei\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei-wordpress', 'wordpress', '1.5.1', 'example.org');
 $check($c->isEnabled(), 'ab Werk an');
 $c->setEnabled(false);
 $check(!$c->isEnabled() && $c->ping(true) === false, 'aus = sendet nichts');

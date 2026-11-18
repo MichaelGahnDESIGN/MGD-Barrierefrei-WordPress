@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 – 2026-11-18
+
+- Die Anmeldung nutzt jetzt den eigenen Produktnamen **mgd-barrierefrei-wordpress**. So zählt theme.michael-gahn.de WordPress-Installationen getrennt von JTL und Shopware. Wer 1.5.0 hatte, wird einmal neu angemeldet.
+- Das Release enthält zusätzlich `mgd-barrierefrei-wordpress-1.5.1.zip` (gleicher Inhalt, Version im Namen) für die Update-Datei auf theme.michael-gahn.de. `mgd-barrierefrei-wordpress.zip` bleibt, damit bestehende Installationen Updates weiter finden.
+
 ## 1.5.0 – 2026-11-18
 
 - **Neu: Anmeldung der Installation (Free-Lizenz).** Das Plugin meldet sich einmal bei theme.michael-gahn.de an und danach höchstens einmal am Tag. Gesendet werden nur: Plugin-Name, Version, Shopsystem, die Domain der Website und eine zufällige Installations-ID. Keine Besucher-, Kunden- oder Bestelldaten.

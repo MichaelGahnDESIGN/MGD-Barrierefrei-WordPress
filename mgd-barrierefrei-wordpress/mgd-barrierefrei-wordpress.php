@@ -3,7 +3,7 @@
  * Plugin Name: MGD Barrierefrei
  * Plugin URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Description: Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit. Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen.
- * Version: 1.5.0
+ * Version: 1.5.1
  * Update URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('MGD_BARRIEREFREI_VERSION', '1.5.0');
+define('MGD_BARRIEREFREI_VERSION', '1.5.1');
 define('MGD_BARRIEREFREI_FILE', __FILE__);
 define('MGD_BARRIEREFREI_DIR', plugin_dir_path(__FILE__));
 define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));
@@ -41,7 +41,7 @@ spl_autoload_register(static function (string $class): void {
     }
 });
 // meldet sich max 1x am Tag im Admin, Schalter auf der Einstellungsseite
-\MGD\Barrierefrei\Install\Platform\WordPress::boot(__FILE__, 'mgd-barrierefrei', 'wordpress', MGD_BARRIEREFREI_VERSION, admin_url('admin.php?page=mgd-barrierefrei#mgd-install'));
+\MGD\Barrierefrei\Install\Platform\WordPress::boot(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, admin_url('admin.php?page=mgd-barrierefrei#mgd-install'));
 
 add_action('plugins_loaded', static function (): void {
     $settings = new MGD_Barrierefrei_Settings();
@@ -66,7 +66,7 @@ require_once __DIR__ . '/includes/class-mgd-plugin-admin-tools.php';
     'slug' => 'mgd-barrierefrei-wordpress',
     'name' => 'MGD Barrierefrei',
     'description' => 'Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit.',
-    'version' => '1.5.0',
+    'version' => '1.5.1',
     'settings' => 'admin.php?page=mgd-barrierefrei',
     'requires' => '6.5',
     'php' => '8.1',

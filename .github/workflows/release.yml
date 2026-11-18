@@ -66,6 +66,8 @@ jobs:
           gh release create "$TAG" \
             release/mgd-barrierefrei-wordpress.zip \
             release/mgd-barrierefrei-wordpress.zip.sha256 \
+            release/mgd-barrierefrei-wordpress-*.zip \
+            release/mgd-barrierefrei-wordpress-*.zip.sha256 \
             --target "$GITHUB_SHA" \
             --title "MGD Barrierefrei $TAG" \
             --generate-notes
