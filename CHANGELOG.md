@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0 – 2026-11-18
+
+- **Neu: Anmeldung der Installation (Free-Lizenz).** Das Plugin meldet sich einmal bei theme.michael-gahn.de an und danach höchstens einmal am Tag. Gesendet werden nur: Plugin-Name, Version, Shopsystem, die Domain der Website und eine zufällige Installations-ID. Keine Besucher-, Kunden- oder Bestelldaten.
+- Gemeldet wird nur im Admin, nie für Besucher. Nach dem Aktivieren erscheint einmal ein Hinweis mit Link zum Schalter.
+- Ab Werk eingeschaltet. Abschalten unten auf der Seite **MGD Barrierefrei**. Dann wird der Eintrag auf der Plattform gelöscht. Das Plugin funktioniert genauso weiter.
+
 Alle wichtigen Änderungen werden in dieser Datei dokumentiert.
 
 ## 1.4.0 – 2026-11-14

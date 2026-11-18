@@ -129,7 +129,7 @@ final class MGD_Barrierefrei_Settings
         <div class="wrap mgd-a11y-admin">
           <header class="mgd-a11y-admin__hero">
             <div><span class="mgd-a11y-admin__eyebrow">MGD Plugin Collection</span><h1>Barrierefreiheit</h1><p>Bedienhilfe, klare Einstellungen und ein anpassbarer Entwurf für deine Erklärung zur Barrierefreiheit.</p></div>
-            <div class="mgd-a11y-admin__status"><span aria-hidden="true"></span><strong>Datensparsam</strong><small>Keine Analyse, keine externen Ressourcen</small></div>
+            <div class="mgd-a11y-admin__status"><span aria-hidden="true"></span><strong>Datensparsam</strong><small>Keine Analyse, keine externen Ressourcen im Frontend</small></div>
           </header>
           <form method="post" class="mgd-a11y-form">
             <?php wp_nonce_field('mgd_barrierefrei_save'); ?>
@@ -220,6 +220,13 @@ final class MGD_Barrierefrei_Settings
           <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
+          <?php // Free-Lizenz Schalter (eigenes Formular, HTML kommt escaped aus dem Install-Client)
+          $mgd_install = \MGD\Barrierefrei\Install\Platform\WordPress::settingsHtml('mgd-barrierefrei', 'wordpress', MGD_BARRIEREFREI_VERSION);
+          if ($mgd_install !== '') : ?>
+          <section class="mgd-a11y-card" id="mgd-install"><h2>Anmeldung der Installation</h2>
+            <?= $mgd_install // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+          </section>
+          <?php endif; ?>
         </div>
         <?php
     }

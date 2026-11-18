@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktueller Entwicklungsstand: 1.4.0** – neue Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktueller Entwicklungsstand: 1.5.0** – Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
@@ -69,3 +69,13 @@ GPL-2.0-or-later. © Michael Gahn DESIGN.
 ## 1.0.1 – Plugin-Verwaltung
 
 Separate Update-Prüfung, Plugin-Links und ergänzte lokale Details. [Anleitung](docs/WORDPRESS-VERWALTUNG.md).
+
+## Anmeldung der Installation (ab 1.5.0)
+
+Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen.
+
+1. Die Meldung ist ab Werk eingeschaltet.
+2. Gemeldet wird höchstens einmal am Tag, wenn jemand mit Admin-Rechten das WordPress-Backend öffnet. Nie für Besucher der Website.
+3. Abschalten: **MGD Barrierefrei** im Menü öffnen, ganz unten den Haken **Installation bei Michael Gahn DESIGN melden** entfernen und speichern. Dann wird der Eintrag auf der Plattform gelöscht.
+4. Das Plugin funktioniert immer voll, auch ohne Meldung oder wenn die Plattform nicht erreichbar ist.
+- Technik: gemeinsamer MGD Install-Client, Quelle im Pro-Repo `plugins/install-client`, hier unter `mgd-barrierefrei-wordpress/includes/Install`. Diesen Ordner nicht von Hand ändern, er wird neu erzeugt.

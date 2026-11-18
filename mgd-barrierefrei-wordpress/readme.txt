@@ -3,11 +3,13 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Lokale Bedienhilfe und ein bearbeitbarer Entwurf der Erklärung zur Barrierefreiheit.
+
+Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen.
 
 == Description ==
 
@@ -27,6 +29,9 @@ Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Update
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.5.0 =
+* Neu: Anmeldung der Installation (Free-Lizenz). Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen. Das Plugin funktioniert auch ohne Meldung genauso weiter.
 
 = 1.4.0 =
 * Gemeinsame Versionsnummer 1.4.0 für alle Produkte von Michael Gahn DESIGN. Keine Änderung an den Funktionen.

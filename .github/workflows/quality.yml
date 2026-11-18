@@ -23,7 +23,7 @@ jobs:
       - name: PHP-Syntax
         run: find mgd-barrierefrei-wordpress -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JavaScript-Syntax
-        run: node --check mgd-barrierefrei-wordpress/assets/js/frontend.js && php tests/widget-config.php && node --check mgd-barrierefrei-wordpress/assets/js/admin.js
+        run: node --check mgd-barrierefrei-wordpress/assets/js/frontend.js && php tests/widget-config.php && php tests/install-client.php && node --check mgd-barrierefrei-wordpress/assets/js/admin.js
       - name: Katalog und Updatezustand
         run: php tests/catalog-package.php && php tests/catalog-update-state.php && php tests/catalog-media.php
       - name: Release-Paket
