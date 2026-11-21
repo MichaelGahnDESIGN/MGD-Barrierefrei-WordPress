@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktueller Entwicklungsstand: 1.6.0** – Updates über theme.michael-gahn.de, Seite „Info und Updates“, Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktueller Entwicklungsstand: 1.6.1** – Updates über theme.michael-gahn.de, Seite „Info und Updates“ mit neuer Ansicht „Weitere Plugins“, Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 

@@ -6,12 +6,20 @@
 2. Dort siehst du:
    - die installierte Version,
    - ob es ein Update gibt,
-   - weitere Plugins von Michael Gahn DESIGN,
+   - weitere Plugins von Michael Gahn DESIGN (ab 1.6.1 mit Suche, Filtern und Knopf „Installieren“),
    - den Schalter **Installation melden**.
 3. Updates installierst du wie gewohnt unter **Plugins**. Vorher werden Größe und Prüfsumme der Datei geprüft.
 4. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
 
-Der alte Knopf „MGD-Updates jetzt prüfen“ und die alte Seite „Weitere Plugins“ gibt es in MGD Barrierefrei ab 1.6.0 nicht mehr. Andere MGD-Plugins mit älteren Versionen können sie noch zeigen.
+## Weitere Plugins installieren (ab 1.6.1)
+
+1. Öffne **MGD Barrierefrei → Info und Updates**.
+2. Scrolle zu **Weitere Plugins**.
+3. Suche ein Plugin oder nutze die Filter.
+4. Klicke **Installieren**. Das geht nur bei kostenlosen Plugins und nur, wenn du Plugins installieren darfst.
+5. Danach steht oben: „Plugin installiert“. Aktivieren musst du es selbst unter **Plugins**.
+
+Der alte Knopf „MGD-Updates jetzt prüfen“ und die alte Seite „Weitere Plugins“ gibt es in MGD Barrierefrei ab 1.6.0 nicht mehr. Ab 1.6.1 sind auch die Dateien der alten Seite entfernt. Andere MGD-Plugins mit älteren Versionen können sie noch zeigen.
 
 ## Rückfall
 

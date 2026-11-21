@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.1 – 2026-11-21
+
+- **Neue Ansicht „Weitere Plugins“** auf der Seite „Info und Updates“: im Design der früheren „MGD Plugin-Kollektion“, mit Bildern, Kategorien, Suche, Filtern und einem Fenster „Details“.
+- **Installieren mit einem Klick:** Kostenlose Plugins kannst du direkt installieren. Vorher werden Herkunft (GitHub), Größe und Prüfsumme geprüft. Das Plugin wird nie automatisch aktiviert.
+- Bilder lädt deine Website einmal selbst von theme.michael-gahn.de. Der Browser lädt keine Bilder von fremden Seiten.
+- Die alte Seite „MGD Plugin-Kollektion“ ist ganz entfernt (Dateien und Code).
+- Technik: Baukasten neu erzeugt (Pro-Repo ab 1187f5e).
+
 ## 1.6.0 – 2026-11-21
 
 Diese Version ist eine Brückenversion. Deine Einstellungen bleiben genau so, wie sie sind.

@@ -27,7 +27,7 @@ foreach (['Transport', 'Response', 'Store', 'CallbackStore', 'CurlTransport', 'I
     require_once $base . 'includes/Kit/Install/' . $f . '.php';
 }
 $v = '';
-$c = \Mgd\Barrierefrei\Kit\Install\Factory::create(new \Mgd\Barrierefrei\Kit\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei-wordpress', 'wordpress', '1.6.0', 'example.org');
+$c = \Mgd\Barrierefrei\Kit\Install\Factory::create(new \Mgd\Barrierefrei\Kit\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei-wordpress', 'wordpress', '1.6.1', 'example.org');
 $check($c->isEnabled(), 'ab Werk an');
 $c->setEnabled(false);
 $check(!$c->isEnabled() && $c->ping(true) === false, 'aus = sendet nichts');

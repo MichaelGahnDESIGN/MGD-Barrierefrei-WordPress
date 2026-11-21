@@ -57,15 +57,23 @@ def check(root, archive):
                          "assets/plugin-catalog/backgrounds/" + stem + ".webp"]:
                 if package.read(prefix + path) != (root / config["runtime"] / path).read_bytes():
                     raise ValueError("Abweichendes Kartenbild im ZIP")
-        # Der komplette lokale Katalog muss im Paket stecken, nicht nur seine Einstiegsklasse.
-        for folder in ["includes/plugin-catalog", "assets/plugin-catalog"]:
+        # ab 1.6.1 alte Katalogseite raus, neue Ansicht kommt aus dem Baukasten
+        names = set(package.namelist())
+        for gone in ["includes/class-mgd-wordpress-plugin-catalog.php", "includes/plugin-catalog/class-provider.php", "assets/plugin-catalog/catalog.js"]:
+            if prefix + gone in names:
+                raise ValueError("Alte Katalogseite noch im ZIP: " + gone)
+        for need in ["includes/Kit/Platform/WordPress/CatalogInstaller.php", "includes/Kit/Platform/WordPress/assets/kit-catalog.js", "includes/Kit/Platform/WordPress/assets/kit-catalog.css", "uninstall.php"]:
+            if prefix + need not in names:
+                raise ValueError("Fehlt im ZIP: " + need)
+        # Ersatzliste + Bilder komplett im Paket
+        for folder in ["includes/plugin-catalog", "assets/plugin-catalog", "includes/Kit"]:
             for source in (root / config["runtime"] / folder).rglob("*"):
                 if source.is_file() and source.name != ".DS_Store" and source.suffix != ".map":
                     relative = source.relative_to(root / config["runtime"]).as_posix()
                     if package.read(prefix + relative) != source.read_bytes():
                         raise ValueError("Unvollständiges Katalogpaket")
     digest = hashlib.sha256(Path(archive).read_bytes()).hexdigest()
-    return f"PASS ZIP {version}: eine Pluginwurzel, V4, sieben Icons und Motive, keine Entwicklungsdateien; SHA-256 {digest}"
+    return f"PASS ZIP {version}: eine Pluginwurzel, Baukasten, sieben Icons und Motive, keine Entwicklungsdateien; SHA-256 {digest}"
 
 
 if __name__ == "__main__":

@@ -57,6 +57,8 @@ final class MGD_Barrierefrei_Settings
         add_action('admin_init', [$this, 'save']);
         add_action('admin_enqueue_scripts', [$this, 'assets']);
         add_action('admin_post_mgd_barrierefrei_create_statement_page', [$statement, 'create_or_update_page']);
+        // Installieren-Knopf bei Weitere Plugins > admin-post.php, info_page() läuft da nicht
+        add_action('admin_init', [self::class, 'catalog_actions']);
     }
 
     public function add_menu(): void
@@ -80,7 +82,7 @@ final class MGD_Barrierefrei_Settings
         if (!current_user_can(self::CAPABILITY)) {
             wp_die('Nicht berechtigt.', '', ['response' => 403]);
         }
-        $list = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::recommendations('mgd-barrierefrei-wordpress', 'wordpress', 'plugin-barrierefrei-wordpress', self::fallback_plugins(), 'MGD-Barrierefrei-WordPress');
+        $list = self::recommendations();
         // parent leer = kein eigener Menüpunkt, Lizenz bleibt aus
         $dash = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::dashboard('mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', self::$updater, $list, false, '');
         if ($dash === null) {
@@ -89,6 +91,16 @@ final class MGD_Barrierefrei_Settings
             return;
         }
         $dash->page();
+    }
+
+    public static function recommendations(): ?\Mgd\Barrierefrei\Kit\Catalog\Recommendations
+    {
+        return \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::recommendations('mgd-barrierefrei-wordpress', 'wordpress', 'plugin-barrierefrei-wordpress', self::fallback_plugins(), 'MGD-Barrierefrei-WordPress');
+    }
+
+    public static function catalog_actions(): void
+    {
+        \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::catalogActions('mgd-barrierefrei-wordpress', self::recommendations(), admin_url('admin.php?page=' . self::INFO_PAGE));
     }
 
     /** Ersatzliste aus plugin-catalog/plugins.json, falls theme.michael-gahn.de nicht antwortet */

@@ -3,7 +3,7 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,11 @@ Updates kommen ab 1.6.0 über theme.michael-gahn.de. Vor der Installation werden
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.6.1 =
+* Neue Ansicht „Weitere Plugins“ auf „Info und Updates“ mit Bildern, Kategorien, Suche, Filtern und Details-Fenster.
+* Kostenlose Plugins lassen sich mit einem Klick installieren (geprüft, nie automatisch aktiviert).
+* Die alte Seite „MGD Plugin-Kollektion“ ist entfernt.
 
 = 1.6.0 =
 * Brückenversion: Updates jetzt über theme.michael-gahn.de mit Prüfung von Größe und Prüfsumme. Der alte Update-Weg über GitHub ist abgeschaltet. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
