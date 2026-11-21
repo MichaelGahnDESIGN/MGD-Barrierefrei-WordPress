@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// Free-Lizenz: Client da, Produktname stimmt, Kurztext in Header + readme
+// Free-Lizenz über den Baukasten: Client da, Produktname stimmt, Kurztext in Header + readme
 $base = __DIR__ . '/../mgd-barrierefrei-wordpress/';
 $fail = 0;
 $check = static function (bool $ok, string $name) use (&$fail): void {
@@ -13,23 +13,21 @@ $kurz = 'Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin,
 $main = (string) file_get_contents($base . 'mgd-barrierefrei-wordpress.php');
 $readme = (string) file_get_contents($base . 'readme.txt');
 $settings = (string) file_get_contents($base . 'includes/class-mgd-barrierefrei-settings.php');
-$hint = (string) file_get_contents($base . 'includes/Install/Settings.php');
+$hint = (string) file_get_contents($base . 'includes/Kit/Install/Settings.php');
 
-$check(is_file($base . 'includes/Install/InstallClient.php') && is_file($base . 'includes/Install/Platform/WordPress.php'), 'Install-Client liegt im Plugin');
-$check(str_contains($main, "WordPress::boot(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION"), 'boot mit Produktname der Update-Datei');
-$check(str_contains($settings, "settingsHtml('mgd-barrierefrei-wordpress', 'wordpress'"), 'Schalter auf der Einstellungsseite');
+$check(is_file($base . 'includes/Kit/Install/InstallClient.php') && is_file($base . 'includes/Kit/Install/Platform/WordPress.php'), 'Install-Client liegt im Baukasten');
+$check(!is_dir($base . 'includes/Install'), 'alter Install-Client ist raus (kein zweiter Client)');
+$check(str_contains($main, "Setup::updater(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION"), 'updater mit Produktname der Update-Datei (startet den Install-Client)');
+$check(!str_contains($main, 'WordPress::boot('), 'kein doppelter boot-Aufruf');
+$check(str_contains($settings, "Setup::dashboard('mgd-barrierefrei-wordpress', 'wordpress'"), 'Schalter auf Info und Updates');
 $check(str_contains($main, $kurz) && str_contains($readme, $kurz), 'Kurztext in Plugin-Header und readme.txt');
 $check(!str_contains($hint, 'ENTWURF'), 'Hinweistext freigegeben');
 
-require_once $base . 'includes/Install/Transport.php';
-require_once $base . 'includes/Install/Response.php';
-require_once $base . 'includes/Install/Store.php';
-require_once $base . 'includes/Install/CallbackStore.php';
-require_once $base . 'includes/Install/CurlTransport.php';
-require_once $base . 'includes/Install/InstallClient.php';
-require_once $base . 'includes/Install/Factory.php';
+foreach (['Transport', 'Response', 'Store', 'CallbackStore', 'CurlTransport', 'InstallClient', 'Factory'] as $f) {
+    require_once $base . 'includes/Kit/Install/' . $f . '.php';
+}
 $v = '';
-$c = \MGD\Barrierefrei\Install\Factory::create(new \MGD\Barrierefrei\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei-wordpress', 'wordpress', '1.5.1', 'example.org');
+$c = \Mgd\Barrierefrei\Kit\Install\Factory::create(new \Mgd\Barrierefrei\Kit\Install\CallbackStore(static function () use (&$v): mixed { return $v; }, static function (string $n) use (&$v): void { $v = $n; }), 'mgd-barrierefrei-wordpress', 'wordpress', '1.6.0', 'example.org');
 $check($c->isEnabled(), 'ab Werk an');
 $c->setEnabled(false);
 $check(!$c->isEnabled() && $c->ping(true) === false, 'aus = sendet nichts');

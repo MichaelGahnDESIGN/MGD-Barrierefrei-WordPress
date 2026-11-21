@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MGD\Barrierefrei\Install;
+namespace Mgd\Barrierefrei\Kit\Install;
 
 final class Response
 {

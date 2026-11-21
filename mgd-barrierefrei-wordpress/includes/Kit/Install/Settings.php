@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MGD\Barrierefrei\Install;
+namespace Mgd\Barrierefrei\Kit\Install;
 
 // Schalter + Hinweis für die Update-/Einstellungsseite des Plugins (alle Systeme gleich)
 final class Settings

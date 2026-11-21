@@ -1,11 +1,19 @@
 # Plugin-Verwaltung
 
-Unter Dashboard → Aktualisierungen und Plugins erscheint einmal „MGD-Updates jetzt prüfen“, auch wenn mehrere MGD-Plugins aktiv sind. Der Button leert nur die Release-Caches der aktiven Plugins und führt die native WordPress-Prüfung aus. Es wird kein Paket installiert und keine Einstellung gespeichert. GitHub erhält die Server-IP. Abgeschaltete Prüfungen bleiben abgeschaltet. Eine fehlende Update-Meldung beweist bei Netzfehlern nicht, dass die Installation aktuell ist.
+## Ab Version 1.6.0
 
-Die Plugin-Zeile bietet Einstellungen, Details, Dokumentation, Support und GitHub. Die Detailansicht bleibt lokal verfügbar.
+1. Öffne im WordPress-Menü **MGD Barrierefrei → Info und Updates**.
+2. Dort siehst du:
+   - die installierte Version,
+   - ob es ein Update gibt,
+   - weitere Plugins von Michael Gahn DESIGN,
+   - den Schalter **Installation melden**.
+3. Updates installierst du wie gewohnt unter **Plugins**. Vorher werden Größe und Prüfsumme der Datei geprüft.
+4. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
 
-Maintenance Studio merkt sich eine letzte geprüfte Quelle erst nach einem passenden stabilen Release-Paket. Im Bereich Updates kann diese Quelle oder das Original wiederhergestellt werden. Die Zustimmung zu HTTP-Prüfungen bleibt dabei erhalten. Sein Menü wird im letzten Menüfilter ans Ende gesetzt. Andere Plugins können die Reihenfolge später trotzdem verändern.
+Der alte Knopf „MGD-Updates jetzt prüfen“ und die alte Seite „Weitere Plugins“ gibt es in MGD Barrierefrei ab 1.6.0 nicht mehr. Andere MGD-Plugins mit älteren Versionen können sie noch zeigen.
 
 ## Rückfall
 
-Vor Updates die Datenbank sichern. Bei Problemen das vorherige Release-ZIP wieder installieren.
+1. Vor Updates die Datenbank sichern.
+2. Bei Problemen das vorherige Release-ZIP wieder installieren.

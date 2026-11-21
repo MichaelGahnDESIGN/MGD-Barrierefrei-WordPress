@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktueller Entwicklungsstand: 1.5.1** – Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktueller Entwicklungsstand: 1.6.0** – Updates über theme.michael-gahn.de, Seite „Info und Updates“, Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
@@ -68,7 +68,7 @@ GPL-2.0-or-later. © Michael Gahn DESIGN.
 
 ## 1.0.1 – Plugin-Verwaltung
 
-Separate Update-Prüfung, Plugin-Links und ergänzte lokale Details. [Anleitung](docs/WORDPRESS-VERWALTUNG.md).
+Version, Updates, weitere Plugins und Anmeldung unter **MGD Barrierefrei → Info und Updates**. [Anleitung](docs/WORDPRESS-VERWALTUNG.md).
 
 ## Anmeldung der Installation (ab 1.5.0)
 
@@ -76,6 +76,15 @@ Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version,
 
 1. Die Meldung ist ab Werk eingeschaltet.
 2. Gemeldet wird höchstens einmal am Tag, wenn jemand mit Admin-Rechten das WordPress-Backend öffnet. Nie für Besucher der Website.
-3. Abschalten: **MGD Barrierefrei** im Menü öffnen, ganz unten den Haken **Installation bei Michael Gahn DESIGN melden** entfernen und speichern. Dann wird der Eintrag auf der Plattform gelöscht.
-4. Das Plugin funktioniert immer voll, auch ohne Meldung oder wenn die Plattform nicht erreichbar ist.
-- Technik: gemeinsamer MGD Install-Client, Quelle im Pro-Repo `plugins/install-client`, hier unter `mgd-barrierefrei-wordpress/includes/Install`. Diesen Ordner nicht von Hand ändern, er wird neu erzeugt.
+3. Abschalten (ab 1.6.0): **MGD Barrierefrei → Info und Updates** öffnen, den Haken **Installation bei Michael Gahn DESIGN melden** entfernen und speichern. Dann wird der Eintrag auf der Plattform gelöscht.
+4. Löschst du das Plugin, wird die Installation ebenfalls abgemeldet.
+5. Das Plugin funktioniert immer voll, auch ohne Meldung oder wenn die Plattform nicht erreichbar ist.
+- Technik (ab 1.6.0): gemeinsamer Plugin-Baukasten aus dem Pro-Repo (`php bin/build-plugin-kit.php … --platform=wordpress --namespace='Mgd\Barrierefrei\Kit' --dir=includes/Kit`), hier unter `mgd-barrierefrei-wordpress/includes/Kit`. Diesen Ordner nicht von Hand ändern, er wird neu erzeugt.
+
+## Updates (ab 1.6.0)
+
+1. Neue Versionen zeigt WordPress unter **Plugins** an, wie bei jedem anderen Plugin.
+2. Die Angaben kommen von theme.michael-gahn.de, die ZIP-Datei aus dem GitHub-Release.
+3. Vor der Installation werden Größe und Prüfsumme geprüft. Stimmt etwas nicht, wird nichts installiert.
+4. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
+5. Den Stand siehst du auch unter **MGD Barrierefrei → Info und Updates**.

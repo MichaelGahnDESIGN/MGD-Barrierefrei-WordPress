@@ -11,6 +11,11 @@ final class MGD_Barrierefrei_Settings
 {
     public const OPTION_NAME = 'mgd_barrierefrei_settings';
     private const CAPABILITY = 'manage_options';
+    // Seite Info und Updates vom Baukasten
+    public const INFO_PAGE = 'mgd-barrierefrei-info';
+
+    // Updater vom Baukasten, setzt die Haupt-Datei - fürs Dashboard
+    public static ?\Mgd\Barrierefrei\Kit\Platform\WordPress\Updater $updater = null;
 
     /** @return array<string, mixed> */
     public static function defaults(): array
@@ -65,6 +70,40 @@ final class MGD_Barrierefrei_Settings
             'dashicons-universal-access-alt',
             81
         );
+        add_submenu_page('mgd-barrierefrei', 'MGD Barrierefrei', 'Einstellungen', self::CAPABILITY, 'mgd-barrierefrei', [$this, 'page']);
+        // Dashboard vom Baukasten: Info, Updates, Weitere Plugins, Installation melden
+        add_submenu_page('mgd-barrierefrei', 'Info und Updates', 'Info und Updates', self::CAPABILITY, self::INFO_PAGE, [$this, 'info_page']);
+    }
+
+    public function info_page(): void
+    {
+        if (!current_user_can(self::CAPABILITY)) {
+            wp_die('Nicht berechtigt.', '', ['response' => 403]);
+        }
+        $list = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::recommendations('mgd-barrierefrei-wordpress', 'wordpress', 'plugin-barrierefrei-wordpress', self::fallback_plugins(), 'MGD-Barrierefrei-WordPress');
+        // parent leer = kein eigener Menüpunkt, Lizenz bleibt aus
+        $dash = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::dashboard('mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', self::$updater, $list, false, '');
+        if ($dash === null) {
+            echo '<div class="wrap"><p>Die Seite konnte gerade nicht geladen werden.</p></div>';
+
+            return;
+        }
+        $dash->page();
+    }
+
+    /** Ersatzliste aus plugin-catalog/plugins.json, falls theme.michael-gahn.de nicht antwortet */
+    public static function fallback_plugins(): array
+    {
+        $raw = file_get_contents(MGD_BARRIEREFREI_DIR . 'includes/plugin-catalog/plugins.json');
+        $data = is_string($raw) ? json_decode($raw, true) : null;
+        $out = [];
+        foreach (is_array($data) ? $data : [] as $row) {
+            if (is_array($row) && !empty($row['slug'])) {
+                $out[] = ['slug' => (string) $row['slug'], 'name' => (string) ($row['name'] ?? ''), 'description' => (string) ($row['description'] ?? ''), 'version' => ''];
+            }
+        }
+
+        return $out;
     }
 
     public function assets(string $hook): void
@@ -220,13 +259,8 @@ final class MGD_Barrierefrei_Settings
           <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
-          <?php // Free-Lizenz Schalter (eigenes Formular, HTML kommt escaped aus dem Install-Client)
-          $mgd_install = \MGD\Barrierefrei\Install\Platform\WordPress::settingsHtml('mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION);
-          if ($mgd_install !== '') : ?>
-          <section class="mgd-a11y-card" id="mgd-install"><h2>Anmeldung der Installation</h2>
-            <?= $mgd_install // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-          </section>
-          <?php endif; ?>
+          <?php // Schalter Installation melden jetzt auf Info und Updates (Baukasten) ?>
+          <p id="mgd-install"><a href="<?= esc_url(admin_url('admin.php?page=' . self::INFO_PAGE)) ?>">Info, Updates und Installation melden</a></p>
         </div>
         <?php
     }

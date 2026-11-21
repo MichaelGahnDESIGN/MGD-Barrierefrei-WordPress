@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MGD\Barrierefrei\Install;
+namespace Mgd\Barrierefrei\Kit\Install;
 
 // Free-Lizenz Anmeldung + Aktiv-Meldung (docs/plans/FREE-LIZENZEN-PLAN.md). Läuft nur im Admin, nie im Shop-Frontend.
 // Fehler werden geschluckt, das Plugin funktioniert immer voll weiter

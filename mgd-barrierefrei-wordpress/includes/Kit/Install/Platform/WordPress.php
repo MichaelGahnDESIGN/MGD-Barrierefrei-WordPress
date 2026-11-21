@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MGD\Barrierefrei\Install\Platform;
+namespace Mgd\Barrierefrei\Kit\Install\Platform;
 
-use MGD\Barrierefrei\Install\{CallbackStore, Factory, InstallClient, Settings};
+use Mgd\Barrierefrei\Kit\Install\{CallbackStore, Factory, InstallClient, Settings};
 
 // WordPress/WooCommerce-Anbindung. Option ohne Autoload, Meldung nur im Admin (admin_init), max 1x am Tag.
 // Update-Prüfung des Plugins: client()->fetchUpdates() statt der festen Datei. Fehler hier dürfen den WP-Admin nie killen

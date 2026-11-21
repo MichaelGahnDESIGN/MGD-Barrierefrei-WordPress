@@ -3,7 +3,7 @@ Contributors: michaelgahndesign
 Tags: accessibility, accessibility statement
 Requires at least: 6.5
 Requires PHP: 8.1
-Stable tag: 1.5.1
+Stable tag: 1.6.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ Die Bedienhilfe ersetzt weder eine barrierefreie Website noch eine Prüfung mit 
 
 Besucherpräferenzen bleiben im localStorage des jeweiligen Browsers. Es gibt kein Besuchertracking und keine externen Schriften oder Skripte.
 
-Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Updates und den öffentlichen Katalog von theme.michael-gahn.de für Empfehlungen im Backend. Die Darstellung und sieben passende Icons und Hintergrundbilder sind lokal enthalten. Es wird kein ausführbarer Code nachgeladen. Installation und Aktualisierung verlangen eine ausdrückliche Verwaltungsaktion. Diese Ausgabe ist kein WordPress.org-Einreichungspaket.
+Updates kommen ab 1.6.0 über theme.michael-gahn.de. Vor der Installation werden Größe und Prüfsumme (SHA-256) der ZIP-Datei geprüft. Die Liste „Weitere Plugins“ kommt ebenfalls von theme.michael-gahn.de, mit einer mitgelieferten Ersatzliste. Es wird kein ausführbarer Code nachgeladen. Installation und Aktualisierung verlangen eine ausdrückliche Verwaltungsaktion. Diese Ausgabe ist kein WordPress.org-Einreichungspaket.
 
 == Installation ==
 
@@ -29,6 +29,11 @@ Diese GitHub-Ausgabe verwendet öffentliche GitHub-Release-Metadaten für Update
 4. Den erzeugten Seitenentwurf inhaltlich prüfen und erst anschließend veröffentlichen.
 
 == Changelog ==
+
+= 1.6.0 =
+* Brückenversion: Updates jetzt über theme.michael-gahn.de mit Prüfung von Größe und Prüfsumme. Der alte Update-Weg über GitHub ist abgeschaltet. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
+* Neue Seite „Info und Updates“ mit Version, Update-Stand, weiteren Plugins und dem Schalter „Installation melden“.
+* Beim Löschen des Plugins wird die Installation bei theme.michael-gahn.de abgemeldet. Deine Einstellungen bleiben unverändert.
 
 = 1.5.1 =
 * Eigener Produktname mgd-barrierefrei-wordpress für die Anmeldung, damit WordPress-Installationen getrennt gezählt werden. Das Release enthält zusätzlich eine ZIP-Datei mit Versionsnummer im Namen.

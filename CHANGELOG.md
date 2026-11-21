@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.6.0 – 2026-11-21
+
+Diese Version ist eine Brückenversion. Deine Einstellungen bleiben genau so, wie sie sind.
+
+- **Updates:** WordPress zeigt neue Versionen jetzt über theme.michael-gahn.de an. Vor der Installation wird geprüft, ob die Datei vollständig und unverändert ist (Größe und Prüfsumme). Der alte Update-Weg über GitHub ist abgeschaltet.
+- **Automatische Updates** bleiben aus, bis du sie selbst unter „Plugins“ einschaltest.
+- **Neue Seite „Info und Updates“:** Unter „MGD Barrierefrei“ findest du jetzt eine Seite mit Version, Update-Stand, weiteren Plugins und dem Schalter „Installation melden“. Die weiteren Plugins erscheinen als einfache Karten. Antwortet der Server nicht, siehst du eine mitgelieferte Liste.
+- **Installation melden:** Der Schalter ist von der Einstellungsseite auf „Info und Updates“ umgezogen. Deine bisherige Wahl (an oder aus) bleibt.
+- **Löschen:** Löschst du das Plugin, wird die Installation bei theme.michael-gahn.de abgemeldet. Deine Einstellungen zur Bedienhilfe bleiben in der Datenbank.
+- Technik: gemeinsamer Plugin-Baukasten aus dem Pro-Repo unter `includes/Kit`. Der alte Install-Client unter `includes/Install` ist raus.
+
 ## 1.5.1 – 2026-11-18
 
 - Die Anmeldung nutzt jetzt den eigenen Produktnamen **mgd-barrierefrei-wordpress**. So zählt theme.michael-gahn.de WordPress-Installationen getrennt von JTL und Shopware. Wer 1.5.0 hatte, wird einmal neu angemeldet.

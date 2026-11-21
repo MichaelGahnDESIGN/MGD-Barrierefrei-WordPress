@@ -41,11 +41,10 @@ def check(root, archive):
         checks = [
             rf"Version:\s*{re.escape(version)}\s",
             rf"define\('MGD_BARRIEREFREI_VERSION', '{re.escape(version)}'\)",
-            rf"'version'\s*=>\s*'{re.escape(version)}'",
-            r"new MGD_WordPress_Plugin_Catalog_V4\(\)",
+            r"Setup::updater\(__FILE__, 'mgd-barrierefrei-wordpress'",
         ]
         if not all(re.search(pattern, main) for pattern in checks):
-            raise ValueError("Version oder Katalogeinstieg stimmt nicht")
+            raise ValueError("Version oder Baukasten-Updater stimmt nicht")
         readme = package.read(prefix + "readme.txt").decode("utf-8")
         if not re.search(rf"^Stable tag:\s*{re.escape(version)}$", readme, re.M):
             raise ValueError("Stable-Tag stimmt nicht")

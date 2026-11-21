@@ -10,4 +10,4 @@ Bitte veröffentliche Sicherheitslücken nicht als öffentliches GitHub-Issue. M
 - Einstellungsänderungen erfordern `manage_options` und einen WordPress-Nonce.
 - Der erzeugte Seitentext wird über die WordPress-API als Entwurf angelegt.
 - Das Frontend lädt keine externen Ressourcen.
-- Der GitHub-Updater akzeptiert nur ein festes öffentliches Repository, semantische stabile Versionen und ein fest benanntes Release-Asset.
+- Updates (ab 1.6.0) kommen über die Update-Datei auf theme.michael-gahn.de. Die ZIP-Adresse muss ein GitHub-Release von MichaelGahnDESIGN sein. Größe und SHA-256 werden vor der Installation geprüft. Automatische Updates bleiben aus.
