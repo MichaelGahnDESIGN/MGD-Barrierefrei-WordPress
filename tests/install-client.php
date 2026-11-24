@@ -19,8 +19,8 @@ $check(is_file($base . 'includes/Kit/Install/InstallClient.php') && is_file($bas
 $check(!is_dir($base . 'includes/Install'), 'alter Install-Client ist raus (kein zweiter Client)');
 $check(str_contains($main, "Setup::updater(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION"), 'updater mit Produktname der Update-Datei (startet den Install-Client)');
 $check(!str_contains($main, 'WordPress::boot('), 'kein doppelter boot-Aufruf');
-$check(str_contains($settings, "Setup::dashboard('mgd-barrierefrei-wordpress', 'wordpress'"), 'Schalter auf Info und Updates');
-$check(str_contains($main, $kurz) && str_contains($readme, $kurz), 'Kurztext in Plugin-Header und readme.txt');
+$check(str_contains($main, "Setup::tools(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress'"), 'Schalter und Info unter MGD Tools');
+$check(str_contains($readme, $kurz), 'Kurztext in readme.txt (Header nach Norm: ein Satz, Datenschutztext liegt unter MGD Tools)');
 $check(!str_contains($hint, 'ENTWURF'), 'Hinweistext freigegeben');
 
 foreach (['Transport', 'Response', 'Store', 'CallbackStore', 'CurlTransport', 'InstallClient', 'Factory'] as $f) {

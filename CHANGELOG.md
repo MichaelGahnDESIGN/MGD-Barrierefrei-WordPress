@@ -1,5 +1,12 @@
 # Changelog
 
+## Unveröffentlicht (kommt mit 2.1.1)
+
+- **MGD Tools:** Die Einstellungen stehen jetzt unter dem gemeinsamen Menüpunkt **MGD Tools → Barrierefrei**. Dort liegen auch Übersicht und Updates, Lizenz und Weitere Plugins. Das eigene Menü „MGD Barrierefrei“ gibt es nicht mehr. Die Seiten-Kennung bleibt, alte Links gehen weiter.
+- Icons und genormter Plugin-Kopf für die Plugin-Liste.
+- Das Farbfeld nutzt den gemeinsamen MGD Farbwähler.
+- Der alte Update-Code und die alte Plugin-Liste sind gelöscht.
+
 ## 1.6.1 – 2026-11-21
 
 - **Neue Ansicht „Weitere Plugins“** auf der Seite „Info und Updates“: im Design der früheren „MGD Plugin-Kollektion“, mit Bildern, Kategorien, Suche, Filtern und einem Fenster „Details“.

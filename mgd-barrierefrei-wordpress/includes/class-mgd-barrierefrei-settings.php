@@ -11,11 +11,9 @@ final class MGD_Barrierefrei_Settings
 {
     public const OPTION_NAME = 'mgd_barrierefrei_settings';
     private const CAPABILITY = 'manage_options';
-    // Seite Info und Updates vom Baukasten
-    public const INFO_PAGE = 'mgd-barrierefrei-info';
-
-    // Updater vom Baukasten, setzt die Haupt-Datei - fürs Dashboard
-    public static ?\Mgd\Barrierefrei\Kit\Platform\WordPress\Updater $updater = null;
+    // Seite liegt unter MGD Tools, die Haupt-Datei reicht die Instanz weiter
+    public const PAGE = 'mgd-barrierefrei';
+    public static ?self $instance = null;
 
     /** @return array<string, mixed> */
     public static function defaults(): array
@@ -53,74 +51,15 @@ final class MGD_Barrierefrei_Settings
 
     public function register(MGD_Barrierefrei_Statement $statement): void
     {
-        add_action('admin_menu', [$this, 'add_menu']);
         add_action('admin_init', [$this, 'save']);
         add_action('admin_enqueue_scripts', [$this, 'assets']);
         add_action('admin_post_mgd_barrierefrei_create_statement_page', [$statement, 'create_or_update_page']);
-        // Installieren-Knopf bei Weitere Plugins > admin-post.php, info_page() läuft da nicht
-        add_action('admin_init', [self::class, 'catalog_actions']);
-    }
-
-    public function add_menu(): void
-    {
-        add_menu_page(
-            'MGD Barrierefrei',
-            'MGD Barrierefrei',
-            self::CAPABILITY,
-            'mgd-barrierefrei',
-            [$this, 'page'],
-            'dashicons-universal-access-alt',
-            81
-        );
-        add_submenu_page('mgd-barrierefrei', 'MGD Barrierefrei', 'Einstellungen', self::CAPABILITY, 'mgd-barrierefrei', [$this, 'page']);
-        // Dashboard vom Baukasten: Info, Updates, Weitere Plugins, Installation melden
-        add_submenu_page('mgd-barrierefrei', 'Info und Updates', 'Info und Updates', self::CAPABILITY, self::INFO_PAGE, [$this, 'info_page']);
-    }
-
-    public function info_page(): void
-    {
-        if (!current_user_can(self::CAPABILITY)) {
-            wp_die('Nicht berechtigt.', '', ['response' => 403]);
-        }
-        $list = self::recommendations();
-        // parent leer = kein eigener Menüpunkt, Lizenz bleibt aus
-        $dash = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::dashboard('mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', self::$updater, $list, false, '');
-        if ($dash === null) {
-            echo '<div class="wrap"><p>Die Seite konnte gerade nicht geladen werden.</p></div>';
-
-            return;
-        }
-        $dash->page();
-    }
-
-    public static function recommendations(): ?\Mgd\Barrierefrei\Kit\Catalog\Recommendations
-    {
-        return \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::recommendations('mgd-barrierefrei-wordpress', 'wordpress', 'plugin-barrierefrei-wordpress', self::fallback_plugins(), 'MGD-Barrierefrei-WordPress');
-    }
-
-    public static function catalog_actions(): void
-    {
-        \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::catalogActions('mgd-barrierefrei-wordpress', self::recommendations(), admin_url('admin.php?page=' . self::INFO_PAGE));
-    }
-
-    /** Ersatzliste aus plugin-catalog/plugins.json, falls theme.michael-gahn.de nicht antwortet */
-    public static function fallback_plugins(): array
-    {
-        $raw = file_get_contents(MGD_BARRIEREFREI_DIR . 'includes/plugin-catalog/plugins.json');
-        $data = is_string($raw) ? json_decode($raw, true) : null;
-        $out = [];
-        foreach (is_array($data) ? $data : [] as $row) {
-            if (is_array($row) && !empty($row['slug'])) {
-                $out[] = ['slug' => (string) $row['slug'], 'name' => (string) ($row['name'] ?? ''), 'description' => (string) ($row['description'] ?? ''), 'version' => ''];
-            }
-        }
-
-        return $out;
     }
 
     public function assets(string $hook): void
     {
-        if ($hook !== 'toplevel_page_mgd-barrierefrei') {
+        // Seite hängt unter MGD Tools, Hook-Name wechselt > nach Seiten-Kennung gehen
+        if (!str_ends_with($hook, '_page_' . self::PAGE) || sanitize_key((string) ($_GET['page'] ?? '')) !== self::PAGE) {
             return;
         }
         wp_enqueue_media();
@@ -198,7 +137,7 @@ final class MGD_Barrierefrei_Settings
                 <p><label for="mgd-a11y-default_theme">Standard-Design</label><select id="mgd-a11y-default_theme" name="mgd_barrierefrei[default_theme]"><option value="auto" <?= selected($s['default_theme'], 'auto', false) ?>>Automatisch (wie das Gerät)</option><option value="light" <?= selected($s['default_theme'], 'light', false) ?>>Hell</option><option value="dark" <?= selected($s['default_theme'], 'dark', false) ?>>Dunkel</option></select><span class="description">Besucher können jederzeit selbst zwischen Hell und Dunkel wechseln.</span></p>
                 <p><label for="mgd-a11y-offset">Abstand nach oben (Pixel)</label><input id="mgd-a11y-offset" type="number" min="0" max="200" step="1" name="mgd_barrierefrei[offset]" value="<?= esc_attr((string) $s['offset']) ?>"><span class="description">Hebt den Button an, falls er z. B. einen Chat- oder Nach-oben-Button verdeckt.</span></p>
                 <p><label for="mgd-a11y-position">Position</label><select id="mgd-a11y-position" name="mgd_barrierefrei[position]"><option value="left" <?= selected($s['position'], 'left', false) ?>>Unten links</option><option value="right" <?= selected($s['position'], 'right', false) ?>>Unten rechts</option></select></p>
-                <p><label for="mgd-a11y-color">Akzentfarbe</label><input id="mgd-a11y-color" type="color" name="mgd_barrierefrei[accent_color]" value="<?= esc_attr($s['accent_color']) ?>"></p>
+                <p><label for="mgd-a11y-color">Akzentfarbe</label><input id="mgd-a11y-color" type="text" data-mgd-color name="mgd_barrierefrei[accent_color]" value="<?= esc_attr($s['accent_color']) ?>"></p>
               </section>
               <aside class="mgd-a11y-preview" aria-label="Vorschau der Bedienhilfe"><span class="mgd-a11y-preview__label">Vorschau</span><div class="mgd-a11y-preview__page"><strong><?= esc_html(get_bloginfo('name')) ?></strong><span>Deine Inhalte bleiben im Mittelpunkt.</span><button type="button" style="--mgd-accent: <?= esc_attr($s['accent_color']) ?>"><span aria-hidden="true" class="mgd-a11y-preview__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.2" stroke-width="1.6"/><circle cx="12" cy="6.9" r="1.55" fill="currentColor" stroke="none"/><path d="M6.6 9.6 12 10.8l5.4-1.2"/><path d="M12 10.8v3.6"/><path d="m9.2 18.4 2.8-4 2.8 4"/></svg></span><span class="mgd-a11y-preview__button-label"><?= esc_html($s['button_label']) ?></span></button></div></aside>
             </div>
@@ -271,8 +210,8 @@ final class MGD_Barrierefrei_Settings
           <form method="post" action="<?= esc_url(admin_url('admin-post.php')) ?>" class="mgd-a11y-create">
             <?php wp_nonce_field('mgd_barrierefrei_create_statement_page'); ?><input type="hidden" name="action" value="mgd_barrierefrei_create_statement_page"><button class="button button-secondary" type="submit">Erklärung als Seite erstellen oder aktualisieren</button>
           </form>
-          <?php // Schalter Installation melden jetzt auf Info und Updates (Baukasten) ?>
-          <p id="mgd-install"><a href="<?= esc_url(admin_url('admin.php?page=' . self::INFO_PAGE)) ?>">Info, Updates und Installation melden</a></p>
+          <?php // Schalter Installation melden steht unter MGD Tools (Baukasten) ?>
+          <p id="mgd-install"><a href="<?= esc_url(\Mgd\Barrierefrei\Kit\Platform\WordPress\Tools::url()) ?>">Info, Updates und Installation melden</a></p>
         </div>
         <?php
     }

@@ -1,10 +1,9 @@
 <?php
 /**
  * Plugin Name: MGD Barrierefrei
- * Plugin URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
- * Description: Bedienhilfe, konfigurierbares Modal und Generator für eine Erklärung zur Barrierefreiheit. Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen.
+ * Plugin URI: https://theme.michael-gahn.de/plugins/plugin-barrierefrei-wordpress
+ * Description: Bedienhilfe für Besucher und Generator für die Erklärung zur Barrierefreiheit, ohne Tracker.
  * Version: 1.6.1
- * Update URI: https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress
  * Requires at least: 6.5
  * Requires PHP: 8.1
  * Author: Michael Gahn DESIGN
@@ -39,13 +38,22 @@ spl_autoload_register(static function (string $class): void {
     }
 });
 
-// Updater vom Baukasten, startet auch den Install-Melder - alter GitHub-Updater + Admin-Tools sind raus
-MGD_Barrierefrei_Settings::$updater = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::updater(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', admin_url('admin.php?page=' . MGD_Barrierefrei_Settings::INFO_PAGE));
-// Reste vom alten Updater wegräumen, 1x pro Version - nur eigene Keys, die anderen MGD-Plugins nutzen den Rest noch
+// Updater + MGD Tools Menü vom Baukasten
+$mgd_updater = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::updater(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', \Mgd\Barrierefrei\Kit\Platform\WordPress\Tools::url());
+// Reste vom alten Updater wegräumen, 1x pro Version
 \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::cleanupLegacy('mgd-barrierefrei-wordpress', MGD_BARRIEREFREI_VERSION, ['mgd_barrierefrei_release_v1', 'mgd_admin_release_mgd-barrierefrei-wordpress']);
+
+// Einstellungen unter MGD Tools - Seiten-Kennung bleibt mgd-barrierefrei, alte Links gehen weiter
+\Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::tools(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', $mgd_updater, [
+    'slug' => 'plugin-barrierefrei-wordpress',
+    'repo' => 'MGD-Barrierefrei-WordPress',
+    'settings' => ['page' => 'mgd-barrierefrei', 'title' => 'Barrierefrei', 'cap' => 'manage_options', 'render' => static function (): void { MGD_Barrierefrei_Settings::$instance?->page(); }],
+    'license' => false,
+]);
 
 add_action('plugins_loaded', static function (): void {
     $settings = new MGD_Barrierefrei_Settings();
+    MGD_Barrierefrei_Settings::$instance = $settings;
     $statement = new MGD_Barrierefrei_Statement($settings);
 
     $settings->register($statement);

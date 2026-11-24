@@ -48,32 +48,21 @@ def check(root, archive):
         readme = package.read(prefix + "readme.txt").decode("utf-8")
         if not re.search(rf"^Stable tag:\s*{re.escape(version)}$", readme, re.M):
             raise ValueError("Stable-Tag stimmt nicht")
-        data = json.loads(package.read(prefix + "includes/plugin-catalog/plugins.json"))
-        if len(data) != 7:
-            raise ValueError("Sieben lokale Katalogeinträge erwartet")
-        for item in data.values():
-            stem = Path(item["icon"]).stem
-            for path in ["assets/plugin-catalog/icons/" + item["icon"],
-                         "assets/plugin-catalog/backgrounds/" + stem + ".webp"]:
-                if package.read(prefix + path) != (root / config["runtime"] / path).read_bytes():
-                    raise ValueError("Abweichendes Kartenbild im ZIP")
-        # ab 1.6.1 alte Katalogseite raus, neue Ansicht kommt aus dem Baukasten
+        # ab MGD Tools: alter Katalog weg, Icons + Baukasten müssen drin sein
         names = set(package.namelist())
-        for gone in ["includes/class-mgd-wordpress-plugin-catalog.php", "includes/plugin-catalog/class-provider.php", "assets/plugin-catalog/catalog.js"]:
+        for gone in ["includes/plugin-catalog/plugins.json", "includes/class-mgd-plugin-admin-tools.php", "includes/class-mgd-barrierefrei-updater.php"]:
             if prefix + gone in names:
-                raise ValueError("Alte Katalogseite noch im ZIP: " + gone)
-        for need in ["includes/Kit/Platform/WordPress/CatalogInstaller.php", "includes/Kit/Platform/WordPress/assets/kit-catalog.js", "includes/Kit/Platform/WordPress/assets/kit-catalog.css", "uninstall.php"]:
+                raise ValueError("Alter Teil noch im ZIP: " + gone)
+        for need in ["assets/icon-128x128.png", "assets/icon-256x256.png", "uninstall.php", "includes/Kit/Platform/WordPress/Tools.php", "includes/Kit/Platform/WordPress/CatalogInstaller.php"]:
             if prefix + need not in names:
                 raise ValueError("Fehlt im ZIP: " + need)
-        # Ersatzliste + Bilder komplett im Paket
-        for folder in ["includes/plugin-catalog", "assets/plugin-catalog", "includes/Kit"]:
-            for source in (root / config["runtime"] / folder).rglob("*"):
-                if source.is_file() and source.name != ".DS_Store" and source.suffix != ".map":
-                    relative = source.relative_to(root / config["runtime"]).as_posix()
-                    if package.read(prefix + relative) != source.read_bytes():
-                        raise ValueError("Unvollständiges Katalogpaket")
+        for source in (root / config["runtime"] / "includes/Kit").rglob("*"):
+            if source.is_file() and source.name != ".DS_Store":
+                relative = source.relative_to(root / config["runtime"]).as_posix()
+                if package.read(prefix + relative) != source.read_bytes():
+                    raise ValueError("Unvollständiger Baukasten im ZIP")
     digest = hashlib.sha256(Path(archive).read_bytes()).hexdigest()
-    return f"PASS ZIP {version}: eine Pluginwurzel, Baukasten, sieben Icons und Motive, keine Entwicklungsdateien; SHA-256 {digest}"
+    return f"PASS ZIP {version}: eine Pluginwurzel, Baukasten, Icons, keine Entwicklungsdateien; SHA-256 {digest}"
 
 
 if __name__ == "__main__":

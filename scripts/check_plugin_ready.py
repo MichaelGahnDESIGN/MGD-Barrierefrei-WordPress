@@ -19,7 +19,10 @@ def check(root, archive=None):
     if channel == 'wordpress-org' and (data['platform'] != 'wordpress' or data.get('externalCatalog') is not False):
         raise ValueError('WordPress.org braucht eine getrennte Ausgabe ohne externen Katalog')
     checked = {}
+    # Kartenmotiv ist optional, Weitere Plugins holt Bilder vom Katalog
     for key in ('icon', 'cardBackground', 'readme', 'changelog', 'documentation'):
+        if key == 'cardBackground' and key not in data:
+            continue
         relative = Path(data[key])
         if relative.is_absolute() or '..' in relative.parts:
             raise ValueError('Pfad außerhalb des Projekts: ' + key)
@@ -27,12 +30,13 @@ def check(root, archive=None):
         if not file.is_relative_to(root) or not file.is_file() or not file.stat().st_size:
             raise ValueError('Fehlende oder unerlaubte Datei: ' + key)
         checked[key] = file
-    image = checked['cardBackground']
-    if image.suffix.lower() != '.webp' or image.stat().st_size > 80000:
-        raise ValueError('Kartenmotiv muss WebP und höchstens 80 KB sein')
-    content = image.read_bytes()
-    if content[:4] != b'RIFF' or content[8:12] != b'WEBP':
-        raise ValueError('Ungültiges WebP-Bild')
+    image = checked.get('cardBackground')
+    if image is not None:
+        if image.suffix.lower() != '.webp' or image.stat().st_size > 80000:
+            raise ValueError('Kartenmotiv muss WebP und höchstens 80 KB sein')
+        content = image.read_bytes()
+        if content[:4] != b'RIFF' or content[8:12] != b'WEBP':
+            raise ValueError('Ungültiges WebP-Bild')
     if archive:
         prefix = data['packageRoot']
         runtime = Path(data['runtime'])
@@ -42,7 +46,7 @@ def check(root, archive=None):
             if package.testzip() is not None:
                 raise ValueError('Beschädigte ZIP-Datei')
             # WordPress.org verwaltet Verzeichnisbilder außerhalb des installierbaren ZIPs.
-            package_assets = () if channel == 'wordpress-org' else ('icon', 'cardBackground')
+            package_assets = () if channel == 'wordpress-org' else tuple(k for k in ('icon', 'cardBackground') if k in checked)
             for key in package_assets:
                 relative = Path(data[key]).relative_to(runtime)
                 name = prefix + '/' + relative.as_posix()
