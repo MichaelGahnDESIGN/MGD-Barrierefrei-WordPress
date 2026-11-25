@@ -3,7 +3,7 @@
  * Plugin Name: MGD Barrierefrei
  * Plugin URI: https://theme.michael-gahn.de/plugins/plugin-barrierefrei-wordpress
  * Description: Bedienhilfe für Besucher und Generator für die Erklärung zur Barrierefreiheit, ohne Tracker.
- * Version: 1.6.1
+ * Version: 2.1.1
  * Requires at least: 6.5
  * Requires PHP: 8.1
  * Author: Michael Gahn DESIGN
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('MGD_BARRIEREFREI_VERSION', '1.6.1');
+define('MGD_BARRIEREFREI_VERSION', '2.1.1');
 define('MGD_BARRIEREFREI_FILE', __FILE__);
 define('MGD_BARRIEREFREI_DIR', plugin_dir_path(__FILE__));
 define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));
@@ -47,7 +47,7 @@ $mgd_updater = \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::updater(__FILE__,
 \Mgd\Barrierefrei\Kit\Platform\WordPress\Setup::tools(__FILE__, 'mgd-barrierefrei-wordpress', 'wordpress', MGD_BARRIEREFREI_VERSION, 'MGD Barrierefrei', $mgd_updater, [
     'slug' => 'plugin-barrierefrei-wordpress',
     'repo' => 'MGD-Barrierefrei-WordPress',
-    'settings' => ['page' => 'mgd-barrierefrei', 'title' => 'Barrierefrei', 'cap' => 'manage_options', 'render' => static function (): void { MGD_Barrierefrei_Settings::$instance?->page(); }],
+    'settings' => ['page' => 'mgd-barrierefrei', 'legacy' => ['mgd-barrierefrei-info'], 'title' => 'Barrierefrei', 'cap' => 'manage_options', 'render' => static function (): void { MGD_Barrierefrei_Settings::$instance?->page(); }],
     'license' => false,
 ]);
 

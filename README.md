@@ -52,7 +52,7 @@ Die Bedienoberfläche nutzt native Buttons, `aria-pressed`, einen Fokusfang im M
 ./scripts/build-release.sh
 ```
 
-Der Befehl erzeugt `release/mgd-barrierefrei-wordpress.zip`, eine SHA-256-Datei und prüft das fertige Archiv auf Pluginwurzel, Version, Katalogdateien und unerwünschte Entwicklungsdateien. `mgd-plugin.json` beschreibt die Pflichtbilder und Dokumentation; der Paketprüfer stammt aus dem MGD Plugin Builder. `release/` ist nicht versioniert.
+Der Befehl erzeugt `release/mgd-barrierefrei-wordpress-<Version>.zip`, eine SHA-256-Datei und prüft das fertige Archiv auf Pluginwurzel, Version, Katalogdateien und unerwünschte Entwicklungsdateien. `mgd-plugin.json` beschreibt die Pflichtbilder und Dokumentation; der Paketprüfer stammt aus dem MGD Plugin Builder. `release/` ist nicht versioniert.
 
 ## 1.0.3 – Icons und Hintergründe aus dem Feed
 

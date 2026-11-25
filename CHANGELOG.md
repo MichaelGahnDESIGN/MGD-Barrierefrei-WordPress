@@ -1,6 +1,8 @@
 # Changelog
 
-## Unveröffentlicht (kommt mit 2.1.1)
+## [2.1.1] - 2026-11-25
+
+- Gemeinsame Verwaltung unter MGD Tools, einheitliche Darstellung, Icons.
 
 - **MGD Tools:** Die Einstellungen stehen jetzt unter dem gemeinsamen Menüpunkt **MGD Tools → Barrierefrei**. Dort liegen auch Übersicht und Updates, Lizenz und Weitere Plugins. Das eigene Menü „MGD Barrierefrei“ gibt es nicht mehr. Die Seiten-Kennung bleibt, alte Links gehen weiter.
 - Icons und genormter Plugin-Kopf für die Plugin-Liste.

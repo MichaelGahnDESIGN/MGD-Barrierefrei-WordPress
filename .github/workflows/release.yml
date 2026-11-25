@@ -62,10 +62,8 @@ jobs:
           TAG: ${{ steps.version.outputs.tag }}
         run: |
           gh release create "$TAG" \
-            release/mgd-barrierefrei-wordpress.zip \
-            release/mgd-barrierefrei-wordpress.zip.sha256 \
-            release/mgd-barrierefrei-wordpress-*.zip \
-            release/mgd-barrierefrei-wordpress-*.zip.sha256 \
+            "release/mgd-barrierefrei-wordpress-${TAG#v}.zip" \
+            "release/mgd-barrierefrei-wordpress-${TAG#v}.zip.sha256" \
             --target "$GITHUB_SHA" \
             --title "MGD Barrierefrei $TAG" \
             --generate-notes

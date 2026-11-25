@@ -27,7 +27,7 @@ jobs:
       - name: Katalog und Updatezustand
         run: php tests/catalog-package.php
       - name: Release-Paket
-        run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress.zip
+        run: bash scripts/build-release.sh && unzip -t release/mgd-barrierefrei-wordpress-*.zip
       - name: Geheimnisse prüfen
         uses: gitleaks/gitleaks-action@v3
         env:
