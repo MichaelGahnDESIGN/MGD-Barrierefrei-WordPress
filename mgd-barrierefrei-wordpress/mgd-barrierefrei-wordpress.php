@@ -3,7 +3,7 @@
  * Plugin Name: MGD Barrierefrei
  * Plugin URI: https://theme.michael-gahn.de/plugins/plugin-barrierefrei-wordpress
  * Description: Bedienhilfe für Besucher und Generator für die Erklärung zur Barrierefreiheit, ohne Tracker.
- * Version: 2.1.3
+ * Version: 2.1.4
  * Requires at least: 6.5
  * Requires PHP: 8.1
  * Author: Michael Gahn DESIGN
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('MGD_BARRIEREFREI_VERSION', '2.1.3');
+define('MGD_BARRIEREFREI_VERSION', '2.1.4');
 define('MGD_BARRIEREFREI_FILE', __FILE__);
 define('MGD_BARRIEREFREI_DIR', plugin_dir_path(__FILE__));
 define('MGD_BARRIEREFREI_URL', plugin_dir_url(__FILE__));

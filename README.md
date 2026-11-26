@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktuelle Version: 2.1.3** – Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen. Verwaltung zusammen mit allen MGD-Plugins unter **MGD Tools**; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktuelle Version: 2.1.4** – Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen. Verwaltung zusammen mit allen MGD-Plugins unter **MGD Tools**; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
