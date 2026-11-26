@@ -35,7 +35,7 @@ Alles wird nur im Browser des Besuchers gespeichert. Es geht nichts an deinen Se
 
 ## Standard einstellen (für dich als Shop-Betreiber)
 
-1. In WordPress links im Menü: **MGD Barrierefrei**.
+1. In WordPress links im Menü: **MGD Tools → Barrierefrei**.
 2. **Standard-Sprache** wählen:
    - *Automatisch* nimmt die Sprache deiner Seite.
    - *Deutsch* oder *Englisch* legt sie fest.

@@ -1,6 +1,6 @@
 # MGD Barrierefrei für WordPress
 
-**Aktueller Entwicklungsstand: 1.6.1** – Updates über theme.michael-gahn.de, Seite „MGD Tools“ mit neuer Ansicht „Weitere Plugins“, Anmeldung der Installation (abschaltbar), Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
+**Aktuelle Version: 2.1.3** – Bedienhilfe mit DE/EN, Hell/Dunkel und (?)-Erklärungen. Verwaltung zusammen mit allen MGD-Plugins unter **MGD Tools**; [Kompatibilitäts-Testmatrix](docs/THEME-KOMPATIBILITAET.md).
 
 Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpassbare Darstellung und einen Generator für einen Entwurf der **Erklärung zur Barrierefreiheit**.
 
@@ -16,27 +16,33 @@ Kostenloses WordPress-Plugin für eine lokal arbeitende Bedienhilfe, eine anpass
 - keine Analyse, keine Cookies, keine externen Schriften oder Drittanbieter-Skripte
 - modernes WordPress-Dashboard für Position, Akzentfarbe, Texte und Kontaktangaben
 - Generator erstellt oder aktualisiert eine bearbeitbare WordPress-Seite als Entwurf
-- Update-Prüfung über veröffentlichte GitHub-Releases, ohne GitHub-Token im Plugin
-- gemeinsame Übersicht weiterer MGD-Plugins nur im Backend, mit sieben Karten, passenden lokalen Bildern, Suche und Filtern
+- Updates über theme.michael-gahn.de, die Prüfsumme wird vor der Installation kontrolliert
+- **MGD Tools:** eine gemeinsame Verwaltung für alle MGD-Plugins mit Übersicht und Updates, Lizenz und Weitere Plugins
 
 ## Installation
 
 1. Lade `mgd-barrierefrei-wordpress.zip` aus dem passenden [GitHub-Release](https://github.com/MichaelGahnDESIGN/MGD-Barrierefrei-WordPress/releases) herunter.
 2. Öffne in WordPress **Plugins → Installieren → Plugin hochladen**.
-3. Aktiviere das Plugin und öffne **MGD Barrierefrei** im linken Menü.
+3. Aktiviere das Plugin und öffne im linken Menü **MGD Tools → Barrierefrei**.
 4. Passe die Darstellung und die Angaben für die Erklärung an. Danach speicherst du und erzeugst den Seitenentwurf.
 5. Prüfe Inhalt, Zuständigkeiten und Rechtslage, bevor du die Seite veröffentlichst.
 
-## Update über GitHub
+## MGD Tools (neu in 2.1.3)
 
-Das Plugin liest ausschließlich die öffentliche Release-Metadaten-API des festen Repositorys. Ein Update erscheint nur, wenn:
+Im Menü **MGD Tools** siehst du alle MGD-Plugins auf einen Blick:
 
-- das Release stabil ist und ein Tag wie `v1.2.3` verwendet,
-- das Release das Asset `mgd-barrierefrei-wordpress.zip` enthält,
-- dieses Asset von GitHub bereitgestellt wird,
-- seine Version höher ist als die installierte Version.
+1. **Aktivieren oder Deaktivieren:** Bei jedem Plugin gibt es einen Schalter. Du musst nicht mehr in die Plugin-Liste wechseln.
+2. **Lizenz:** Bei jedem Plugin steht, ob es Free oder Pro ist. Dieses Plugin ist kostenlos, es braucht keinen Schlüssel.
+3. **Updates:** Gibt es eine neue Version, siehst du sie dort und unter **Plugins**.
 
-WordPress installiert das ZIP anschließend über seinen üblichen Plugin-Update-Prozess. Das Paket enthält immer den Ordner `mgd-barrierefrei-wordpress/` als ZIP-Wurzel.
+## Updates
+
+1. WordPress fragt die Datei `mgd-barrierefrei-wordpress.json` auf theme.michael-gahn.de ab.
+2. Ist dort eine neuere Version eingetragen, zeigt WordPress das Update unter **Plugins** an.
+3. Das ZIP kommt aus dem GitHub-Release. Vor der Installation werden Größe und Prüfsumme (SHA-256) geprüft.
+4. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
+
+Mach vor einem Update eine Sicherung.
 
 ## Datenschutz und Sicherheit
 
@@ -54,37 +60,4 @@ Die Bedienoberfläche nutzt native Buttons, `aria-pressed`, einen Fokusfang im M
 
 Der Befehl erzeugt `release/mgd-barrierefrei-wordpress-<Version>.zip`, eine SHA-256-Datei und prüft das fertige Archiv auf Pluginwurzel, Version, Katalogdateien und unerwünschte Entwicklungsdateien. `mgd-plugin.json` beschreibt die Pflichtbilder und Dokumentation; der Paketprüfer stammt aus dem MGD Plugin Builder. `release/` ist nicht versioniert.
 
-## 1.0.3 – Icons und Hintergründe aus dem Feed
-
-Die Karten unter **Weitere Plugins** bekommen Icons und Hintergründe aus theme.michael-gahn.de. Der Server holt sie einmal und speichert sie lokal; der Browser lädt nichts extern. Ohne Bild bleibt das mitgelieferte Motiv. Versionen erscheinen ohne führendes „v". [Änderungsprotokoll](CHANGELOG.md).
-
-## 1.0.2 – Gemeinsame Plugin-Kollektion
-
-Der Bereich **Weitere Plugins** nutzt dieselbe lokale Katalogkomponente wie die übrigen aktuellen MGD-Plugins. Sieben Karten bieten passende Icons und Hintergrundbilder, Suche, Filter, Installationsstatus und eine Detailansicht. Die Zentrale liefert öffentliche Metadaten; Darstellung und Ersatzbilder werden mit dem Plugin ausgeliefert. [Release-Anleitung](docs/wiki/Updates-und-Releases.md) · [Änderungsprotokoll](CHANGELOG.md).
-
-## Lizenz
-
-GPL-2.0-or-later. © Michael Gahn DESIGN.
-
-## 1.0.1 – Plugin-Verwaltung
-
-Version, Updates, weitere Plugins und Anmeldung unter **MGD Tools → Übersicht und Updates**. [Anleitung](docs/WORDPRESS-VERWALTUNG.md).
-
-## Anmeldung der Installation (ab 1.5.0)
-
-Meldet sich höchstens einmal am Tag bei theme.michael-gahn.de (Plugin, Version, Shopsystem, Domain, zufällige ID). Abschaltbar in den Einstellungen.
-
-1. Die Meldung ist ab Werk eingeschaltet.
-2. Gemeldet wird höchstens einmal am Tag, wenn jemand mit Admin-Rechten das WordPress-Backend öffnet. Nie für Besucher der Website.
-3. Abschalten (ab 1.6.0): **MGD Tools → Übersicht und Updates** öffnen, den Haken **Installation bei Michael Gahn DESIGN melden** entfernen und speichern. Dann wird der Eintrag auf der Plattform gelöscht.
-4. Löschst du das Plugin, wird die Installation ebenfalls abgemeldet.
-5. Das Plugin funktioniert immer voll, auch ohne Meldung oder wenn die Plattform nicht erreichbar ist.
-- Technik (ab 1.6.0): gemeinsamer Plugin-Baukasten aus dem Pro-Repo (`php bin/build-plugin-kit.php … --platform=wordpress --namespace='Mgd\Barrierefrei\Kit' --dir=includes/Kit`), hier unter `mgd-barrierefrei-wordpress/includes/Kit`. Diesen Ordner nicht von Hand ändern, er wird neu erzeugt.
-
-## Updates (ab 1.6.0)
-
-1. Neue Versionen zeigt WordPress unter **Plugins** an, wie bei jedem anderen Plugin.
-2. Die Angaben kommen von theme.michael-gahn.de, die ZIP-Datei aus dem GitHub-Release.
-3. Vor der Installation werden Größe und Prüfsumme geprüft. Stimmt etwas nicht, wird nichts installiert.
-4. Automatische Updates bleiben aus, bis du sie selbst einschaltest.
-5. Den Stand siehst du auch unter **MGD Tools → Übersicht und Updates**.
+Änderungen: [Änderungsprotokoll](CHANGELOG.md).

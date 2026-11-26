@@ -1,5 +1,9 @@
 # Updates und Releases
 
+## Ab Version 2.1.3
+
+Die Verwaltung liegt unter **MGD Tools** (linkes Menü). Dort kannst du MGD-Plugins mit einem Schalter aktivieren und deaktivieren. Bei jedem Plugin steht, ob es Free oder Pro ist. MGD Barrierefrei ist kostenlos und braucht keinen Lizenzschlüssel.
+
 ## Ab Version 1.6.0
 
 1. WordPress fragt die Update-Datei `mgd-barrierefrei-wordpress.json` auf theme.michael-gahn.de ab.

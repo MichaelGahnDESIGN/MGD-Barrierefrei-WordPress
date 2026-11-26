@@ -5,7 +5,7 @@ MGD Barrierefrei ergänzt eine WordPress-Seite um eine lokale Bedienhilfe und ei
 ## Schnellstart
 
 1. Plugin installieren und aktivieren.
-2. **MGD Barrierefrei** im WordPress-Menü öffnen.
+2. **MGD Tools → Barrierefrei** im WordPress-Menü öffnen.
 3. Bedienhilfe gestalten und Kontaktangaben eintragen.
 4. Einstellungen speichern.
 5. Seite als Entwurf erstellen, prüfen und erst danach veröffentlichen.
